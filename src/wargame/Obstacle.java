@@ -11,6 +11,7 @@ public class Obstacle extends Element {
 		}
 	}
 	private TypeObstacle TYPE;
+	private Position pos;
 	Obstacle(TypeObstacle type, Position pos) { TYPE = type; this.pos = pos; }
 	public String toString() { return ""+TYPE; }
 }
