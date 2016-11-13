@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class MonMenu extends JMenuBar{
 	
@@ -48,6 +49,15 @@ public class MonMenu extends JMenuBar{
 		JMenuItem about=new JMenuItem("?");
 		help.add(welcome);
 		help.add(about);
+		about.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JOptionPane.showMessageDialog(null, "WarGame version 1.0 est un projet des Étudiant 3éme Année Sciences Informatique\n"
+						+ "En construction de Jeux en JAVA Objet Orienté","Information",JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		
 	}
 }
