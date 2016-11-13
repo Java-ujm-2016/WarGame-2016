@@ -1,5 +1,8 @@
 package wargame;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -27,6 +30,13 @@ public class MonMenu extends JMenuBar{
 		file.add(open);
 		file.add(save);
 		file.add(exit);
+		exit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+		});
 		
 		/* MODIFIER **/
 		JMenu edit =new JMenu("Modifier");
