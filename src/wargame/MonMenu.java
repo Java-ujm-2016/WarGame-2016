@@ -31,13 +31,13 @@ public class MonMenu extends JMenuBar{
 		file.add(save);
 		file.add(exit);
 		exit.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				System.exit(0);
 			}
 		});
+		
 		/* MODIFIER **/
 		JMenu edit =new JMenu("Modifier");
 		add(edit);
