@@ -3,7 +3,7 @@ package wargame;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Element {
+public abstract class Element {
 	protected Color coul;
 	protected Position pos;
 	
@@ -14,5 +14,5 @@ public class Element {
 		g.setColor(coul);
 		g.fillPolygon(xPoints, yPoints, 4);
 	}
-	
+
 }
