@@ -23,7 +23,7 @@ public class MonMenu extends JMenuBar{
 		JMenu file =new JMenu("Fichier");
 		/* Fichier */
 		add(file);
-		JMenuItem restart=new JMenuItem("réJeux");
+		JMenuItem restart=new JMenuItem("ré-jouer");
 		JMenuItem open=new JMenuItem("ouvrir");
 		JMenuItem save=new JMenuItem("sauvgarder");
 		JMenuItem exit=new JMenuItem("sortir");
