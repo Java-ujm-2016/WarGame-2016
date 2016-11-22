@@ -37,7 +37,7 @@ public class Carte implements ICarte {
 			return (new Position(pos));
 		else return null;
 	}
-								// aléatoirement parmi les 8 positions adjacentes de pos
+	// aléatoirement parmi les 8 positions adjacentes de pos
 	public Heros trouveHeros(){
 		// Trouve aléatoirement un héros sur la carte
 		return null;
