@@ -3,7 +3,7 @@ package wargame;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public abstract class Element {
+public  class Element implements IConfig  {
 	protected Color coul;
 	protected Position pos;
 	
