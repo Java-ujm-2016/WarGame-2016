@@ -32,6 +32,7 @@ public class Soldat extends Element implements ISoldat {
 	
 	
 	public Soldat(int pointv, int porte, int puissancef, int puissancet, int numerosoldat, Position posSoldat){
+		super();
 		//super(posSoldat);
 		this.ptvi=pointv;
 		this.portee = porte;

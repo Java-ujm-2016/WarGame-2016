@@ -6,6 +6,7 @@ import java.awt.Graphics;
 public  class Element implements IConfig  {
 	protected Color coul;
 	protected Position pos;
+
 	
 	//seDessiner chaque element sur la carte
 	public void seDessiner(Graphics g){
@@ -13,6 +14,11 @@ public  class Element implements IConfig  {
 		int[] yPoints ={pos.getY()*20,(pos.getY()+1)*20,(pos.getY()+2)*20,(pos.getY()+3)*20 };
 		g.setColor(coul);
 		g.fillPolygon(xPoints, yPoints, 4);
+	}
+
+	public void dessinerCarre(int i,Graphics g){
+
+
 	}
 
 }
