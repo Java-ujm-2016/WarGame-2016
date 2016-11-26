@@ -43,6 +43,10 @@ public class PanneauJeu extends JPanel{
 		setOpaque(true);
 		setBackground(Color.GRAY);
 		setPreferredSize(new Dimension(IConfig.WIDTH, IConfig.HIGHT));
+		StatusBar statuBar= new StatusBar();
+
+		add(statuBar,BorderLayout.SOUTH);
+
 	}
 
 	

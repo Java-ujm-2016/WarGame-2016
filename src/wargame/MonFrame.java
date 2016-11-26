@@ -18,11 +18,10 @@ public class MonFrame extends JFrame{
 		JMenuBar mMenu=new MonMenu();
 		
 		frame.setJMenuBar(mMenu);
-		StatusBar statuBar= new StatusBar();
 		JPanel panneau= new PanneauJeu();
-		frame.getContentPane().add(panneau, BorderLayout.CENTER);
-		frame.getContentPane().add(statuBar,BorderLayout.SOUTH);
-		
+		frame.add(panneau, BorderLayout.CENTER);
+
+
 		frame.setLocation(250, 100);
 		frame.pack();
 		frame.setVisible(true);	

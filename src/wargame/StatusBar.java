@@ -1,6 +1,6 @@
 package wargame;
 
-import java.awt.Dimension;
+import java.awt.*;
 
 import javax.swing.JLabel;
 
@@ -14,7 +14,8 @@ public class StatusBar extends JLabel {
 	/** Creates a new instance of StatusBar */
     public StatusBar() {
         super();
-        super.setPreferredSize(new Dimension(100, 16));
+        setBackground(Color.white);
+        //super.setPreferredSize(new Dimension(getWidth(), 26));
         setMessage("Ready");
     }
      
