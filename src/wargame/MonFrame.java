@@ -19,7 +19,7 @@ public class MonFrame extends JFrame{
 		
 		frame.setJMenuBar(mMenu);
 		JPanel panneau= new PanneauJeu();
-		frame.add(panneau, BorderLayout.CENTER);
+		frame.add(panneau);
 
 
 		frame.setLocation(250, 100);
