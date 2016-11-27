@@ -17,7 +17,7 @@ public class Main {
 				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
 					ex.printStackTrace();
 				}
-				setDefaultSize(14);
+				//setDefaultSize(14);
 
 				new MonFrame();
 		}});

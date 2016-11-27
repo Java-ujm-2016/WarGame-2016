@@ -1,7 +1,7 @@
 package wargame;
 
 public class Heros extends Soldat {
-	
+	TypesH tHero;
 	
 	final int RECUP_POINT=2;
 	/*
@@ -17,6 +17,7 @@ public class Heros extends Soldat {
 		super(hero.getPoints(),hero.getPortee(),hero.getPuissance(),hero.getTir(),numeroh, position);
 		djoue=0;
 		coul=COULEUR_HEROS;
+		tHero=hero;
 	}
 	
 	/*
@@ -37,7 +38,7 @@ public class Heros extends Soldat {
 	}
 	
 	public String toString(){
-    	return  " numéro :"+(numsoldat+1) + ", points de vie : "+ ptvi + " / points de vie max : " + POINTS_DE_VIE_MAX + ", portée : " + portee + "puissance:"+puissance+"\n";
+    	return  "Type Hero : "+ tHero+", numéro : "+(numsoldat) + ", points de vie : "+ ptvi + " / points de vie max : " + POINTS_DE_VIE_MAX + ", portée : " + portee + ", puissance : "+puissance+"\nPosition "+pos+"\n";
 
     }
 

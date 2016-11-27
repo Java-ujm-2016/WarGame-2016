@@ -6,7 +6,7 @@ public class Soldat extends Element implements ISoldat {
 	
 
 	protected int djoue; /*pour savoir si un joueur a deja jouer*/
-	private Position Soldatpos; /*pour connaitre la position d'un soldat*/
+	//protected Position Soldatpos; /*pour connaitre la position d'un soldat*/
 	protected int ptvi; /*recup du point de vie d'un soldat*/
 	protected int puissance; /*puissance de frappe*/
 	protected int tir; /*puissance de tir*/
@@ -39,7 +39,7 @@ public class Soldat extends Element implements ISoldat {
 		this.puissance=puissancef;
 		this.tir=puissancet;
 		this.numsoldat = numerosoldat;
-		this.Soldatpos=posSoldat;
+		pos= new Position(posSoldat);
 		
 	}
 /*
@@ -160,7 +160,7 @@ public class Soldat extends Element implements ISoldat {
 			
 			/***combat corps à corps*/
 			
-			if(this.pos.estVoisine( Soldatpos) ){
+			if(this.pos.estVoisine( soldat.pos) ){
 				puisf1=(int)(Math.random()*this.puissance); /*puissance de frappa de l'objet courant*/
 				puisf2=(int)(Math.random()*(soldat.getPuissance())); /* puissance de frappe de soldat*/
 				
@@ -170,7 +170,8 @@ public class Soldat extends Element implements ISoldat {
 				soldat.setPoints(soldat.getPoints()-puisf1);
 				if(soldat.getPoints()>0){ 
 					/*le premier coup est porté par soldat
-					 * d'ou le nombre sup de son nombre de vie */
+					 * d'ou le nombre sup de son nombre de vie
+					 * */
 					
 					this.setPoints(ptvi-puisf2); /*pt de vie de l'objet courant diminue*/
 					if(this.getPoints()<=0){ /**point de vie de courant 

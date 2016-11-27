@@ -1,15 +1,30 @@
 package wargame;
 
+
 import java.awt.Graphics;
 
-import javax.swing.Icon;
-import javax.swing.JButton;
 
 public class Carte implements ICarte {
 	protected Element[][] tabElements;
+	protected Obstacle[] tabObstacle;
+    protected Heros[] tabHeros;
+    protected Monstre[] tabMonstre;
 	public Carte(){
-		tabElements=new Element[IConfig.HAUTEUR_CARTE][IConfig.LARGEUR_CARTE];
-	}
+		tabElements=new Element[IConfig.LARGEUR_CARTE][IConfig.HAUTEUR_CARTE];
+		viderTabElement();
+        createObstacle();
+        createMonstre();
+        createHeros();
+        System.out.println("\n\n");
+        System.out.println("**************************** Fin Creation *************************************");
+        /*for(int i=0;i<IConfig.HAUTEUR_CARTE;i++){
+            for(int j=0; j< IConfig.LARGEUR_CARTE;j++) {
+                if(tabElements[i][j]!=null)
+                System.out.print("Position : "+tabElements[i][j].pos+" "+tabElements[i][j].coul);
+            }
+            System.out.print("\n");
+        }*/
+    }
 	
 	
 	public Element getElement(Position pos){
@@ -18,12 +33,12 @@ public class Carte implements ICarte {
 	
 	public Position trouvePositionVide(){
 		// Trouve aléatoirement une position vide sur la carte
-		int x= (int) (Math.random()*IConfig.HAUTEUR_CARTE);
-		int y= (int) (Math.random() * IConfig.LARGEUR_CARTE);
+		int x= (int) (Math.random() * IConfig.LARGEUR_CARTE);
+		int y= (int) (Math.random() * IConfig.HAUTEUR_CARTE);
 		int count=1;
 		while (tabElements[x][y]!=null && count<= (IConfig.HAUTEUR_CARTE*IConfig.LARGEUR_CARTE)){
-			x= (int) (Math.random() * IConfig.HAUTEUR_CARTE);
-			y= (int) (Math.random() * IConfig.LARGEUR_CARTE);
+			x= (int) (Math.random() * IConfig.LARGEUR_CARTE);
+			y= (int) (Math.random() * IConfig.HAUTEUR_CARTE);
 			count++;
 		}
 		if(count<= (IConfig.HAUTEUR_CARTE*IConfig.LARGEUR_CARTE))
@@ -66,11 +81,62 @@ public class Carte implements ICarte {
 	}
 	
 	public void toutDessiner(Graphics g){
-		
+
+        for(int i=0;i<IConfig.LARGEUR_CARTE;i++)
+            for(int j=0; j< IConfig.HAUTEUR_CARTE;j++) {
+                if (tabElements[i][j] != null) {
+                    //System.out.print(tabElements[i][j].coul + " | ");
+                    tabElements[i][j].dessinerCarree(i*IConfig.NB_PIX_CASE,j*IConfig.NB_PIX_CASE,g);
+                }else{
+                    g.setColor(IConfig.COULEUR_INCONNU);
+                    g.drawRect(i*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, j*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);
+                    g.setColor(IConfig.COULEUR_INCONNU);
+                    g.fillRect(i*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, j*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);
+                }
+
+            }
 	}
 	public void viderTabElement(){
-		for(int i=0;i<IConfig.HAUTEUR_CARTE;i++)
-			for (int j=0;j<IConfig.LARGEUR_CARTE;j++)
-				this.tabElements[i][j]=null;
+		for(int i=0;i<IConfig.LARGEUR_CARTE;i++)
+			for (int j=0;j<IConfig.HAUTEUR_CARTE;j++) {
+                this.tabElements[i][j] = null;
+                //this.tabElements[i][j].coul=IConfig.COULEUR_VIDE;
+            }
+		}
+	public void createObstacle(){
+		tabObstacle =new Obstacle[IConfig.NB_OBSTACLES];
+		for(int i=0;i<tabObstacle.length;i++)
+			tabObstacle[i]= new Obstacle(trouvePositionVide());
+
+
+		for(int i=0;i<tabObstacle.length;i++) {
+            tabElements[tabObstacle[i].getElementPosition().getX()][tabObstacle[i].getElementPosition().getY()] = tabObstacle[i];
+
+        }
 	}
+
+    public void createMonstre(){
+        tabMonstre =new Monstre[IConfig.NB_MONSTRES];
+        for(int i=0;i<tabMonstre.length;i++) {
+            tabMonstre[i] = new Monstre(ISoldat.TypesM.getTypeMAlea(), i+1 , trouvePositionVide());
+            //System.out.println(tabMonstre[i]);
+        }
+
+        for(int i=0;i<tabMonstre.length;i++)
+            tabElements[tabMonstre[i].getElementPosition().getX()][tabMonstre[i].getElementPosition().getY()] = tabMonstre[i];
+    }
+
+
+
+    public void createHeros(){
+        tabHeros =new Heros[IConfig.NB_HEROS];
+        for(int i=0;i<tabHeros.length;i++) {
+            tabHeros[i] = new Heros(ISoldat.TypesH.getTypeHAlea(), i + 1, trouvePositionVide());
+            //System.out.println(tabHeros[i]);
+
+        }
+
+        for(int i=0;i<tabHeros.length;i++)
+            tabElements[tabHeros[i].getElementPosition().getX()][tabHeros[i].getElementPosition().getY()] = tabHeros[i];
+    }
 }
