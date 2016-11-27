@@ -5,13 +5,18 @@ import java.awt.*;
 public  class Element implements IConfig {
 	protected Color coul = IConfig.COULEUR_VIDE;
 	protected Position pos;
+	protected int numeroSoldat=0;
 
 	public Position getElementPosition() {
 		return this.pos;
 	}
 
 	public void dessinerCarree(int x, int y, Graphics g) {
-		g.setColor(IConfig.COULEUR_TEXTE);
+		g.setColor(Color.yellow);
+        if(numeroSoldat != 0)
+		    g.drawString(numeroSoldat+"",x + IConfig.NB_PIX_CASE, (y+IConfig.NB_PIX_CASE));
+	    g.setColor(IConfig.COULEUR_TEXTE);
+		//g.drawString("");
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(2));
 		g.drawRect(x + IConfig.NB_PIX_CASE, y + IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE);

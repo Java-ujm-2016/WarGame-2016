@@ -86,7 +86,7 @@ public class Carte implements ICarte {
             for(int j=0; j< IConfig.HAUTEUR_CARTE;j++) {
                 if (tabElements[i][j] != null) {
                     //System.out.print(tabElements[i][j].coul + " | ");
-                    tabElements[i][j].dessinerCarree(i*IConfig.NB_PIX_CASE,j*IConfig.NB_PIX_CASE,g);
+					tabElements[i][j].dessinerCarree(i*IConfig.NB_PIX_CASE,j*IConfig.NB_PIX_CASE,g);
 					//tabElements[i][j].seDessinerPolygone(new Position(i*(IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE/2),j*((int)(IConfig.NB_PIX_CASE* Math.sqrt(3))/2)),g);
                 }else{
 
@@ -142,7 +142,9 @@ public class Carte implements ICarte {
 
         }
 
-        for(int i=0;i<tabHeros.length;i++)
+        for(int i=0;i<tabHeros.length;i++){
             tabElements[tabHeros[i].getElementPosition().getX()][tabHeros[i].getElementPosition().getY()] = tabHeros[i];
+			//System.out.println(tabHeros[i].getNumeroSoldat());
+		}
     }
 }
