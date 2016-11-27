@@ -14,7 +14,6 @@ public  class Element implements IConfig {
 	public void dessinerCarree(int x, int y, Graphics g) {
 		g.setColor(Color.yellow);
         if(numeroSoldat != 0)
-
 		    g.drawString(numeroSoldat+"",x + IConfig.NB_PIX_CASE, (y+IConfig.NB_PIX_CASE));
 	    g.setColor(IConfig.COULEUR_TEXTE);
 		//g.drawString("");
