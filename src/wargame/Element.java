@@ -1,28 +1,60 @@
 package wargame;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
-public  class Element implements IConfig  {
-	protected Color coul=IConfig.COULEUR_VIDE;
+public  class Element implements IConfig {
+	protected Color coul = IConfig.COULEUR_VIDE;
 	protected Position pos;
 
-
-
-
-	//seDessiner chaque element sur la carte
-	/*public void seDessiner(Graphics g){
-		int[] xPoints ={pos.getX()*20,(pos.getX()+1)*20,(pos.getX()+2)*20,(pos.getX()+3)*20 };
-		int[] yPoints ={pos.getY()*20,(pos.getY()+1)*20,(pos.getY()+2)*20,(pos.getY()+3)*20 };
-		g.setColor(coul);
-		g.fillPolygon(xPoints, yPoints, 4);
-	}*/
-	public Position getElementPosition(){return this.pos;}
-	public void dessinerCarree(int x,int y,Graphics g){
-		g.setColor(coul);
-		g.drawRect(x+IConfig.NB_PIX_CASE,y+IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);
-		g.fillRect(x+IConfig.NB_PIX_CASE,y+IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);
+	public Position getElementPosition() {
+		return this.pos;
 	}
 
+	public void dessinerCarree(int x, int y, Graphics g) {
+		g.setColor(IConfig.COULEUR_TEXTE);
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setStroke(new BasicStroke(2));
+		g.drawRect(x + IConfig.NB_PIX_CASE, y + IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE);
+		g.setColor(coul);
+		g.fillRect(x + IConfig.NB_PIX_CASE, y + IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE);
+
+	}
+
+	/*
+	* Polygone Regulier
+	* @param Centre Position de point centre de Polygone
+	* */
+	public void seDessinerPolygone(Position centre,Graphics g) {
+		Position[] tab=new Position[6];
+		Position p;
+		centre=new Position(centre.getX()+IConfig.NB_PIX_CASE,centre.getY()+IConfig.NB_PIX_CASE);
+		p = new Position(centre.getX()+IConfig.NB_PIX_CASE, centre.getY());
+		double dx=p.getX() - centre.getX();
+		double dy=p.getY() - centre.getY();
+		double a= Math.atan2(dy, dx);
+		double r= Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+		tab[0]=new Position(p);
+		for(int i=1;i<tab.length;i++) {
+			tab[i] = new Position((int) (centre.getX() + (r * Math.cos(a + (i * 2 * Math.PI / 6)))), (int) (centre.getY() + (r * Math.sin(a + (i * 2 * Math.PI / 6)))));
+
+		}
+		int[] ensPointX = new int[6];
+		int[] ensPointY = new int[6];
+		g.setColor(IConfig.COULEUR_TEXTE);
+		for (int j= 0; j < tab.length; j++) {
+			ensPointX[j] =  tab[j].getX();
+			ensPointY[j] =  tab[j].getY();
+
+		}
+		//g.drawString(toString(), ensPointX[6 - 2], ensPointY[6 - 2]);
+		g.setColor(IConfig.COULEUR_TEXTE);
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setStroke(new BasicStroke(2));
+
+		if(coul!=null)
+			g.setColor(coul);
+		else g.setColor(IConfig.COULEUR_INCONNU);
+		g.fillPolygon(ensPointX, ensPointY, 6);
+	}
 
 }
