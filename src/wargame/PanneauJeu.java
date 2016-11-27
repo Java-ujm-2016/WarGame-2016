@@ -9,9 +9,7 @@ import java.awt.Graphics;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
+import javax.swing.*;
 
 public class PanneauJeu extends JPanel{
 	/**
@@ -22,15 +20,29 @@ public class PanneauJeu extends JPanel{
 	JLabel label;
 	Carte crt;
 	JPanel zoneDessin;
+	JButton finTour;
+	JPanel buttonsPannel;
 
 	public PanneauJeu(){
 		super();
 		crt=new Carte();
-		label=new JLabel();
-        setLayout(new BorderLayout());
+		buttonsPannel=new JPanel();
+		finTour=new JButton("Fin Tour");
+		buttonsPannel.setPreferredSize(new Dimension(200,90));
+		buttonsPannel.setBackground(Color.GRAY);
 
-        JScrollBar hbar = new JScrollBar(JScrollBar.HORIZONTAL, 30, 40, 0, 300);
+		label=new JLabel();
+       	setLayout(new BorderLayout());
+		add(buttonsPannel,BorderLayout.NORTH);
+       	finTour.setPreferredSize(new Dimension(180,80));
+		//add(finTour,BorderLayout.NORTH);
+		buttonsPannel.add(finTour,BorderLayout.NORTH);
+
+
+
+		JScrollBar hbar = new JScrollBar(JScrollBar.HORIZONTAL, 30, 40, 0, 300);
         JScrollBar vbar = new JScrollBar(  JScrollBar.VERTICAL, 30, 40, 0, 300);
+
 
         //hbar.setUnitIncrement(10);
         //hbar.setBlockIncrement(1);
@@ -74,7 +86,8 @@ public class PanneauJeu extends JPanel{
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			//g.drawRect(100,100, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);
-			crt.toutDessiner(g);
+			//crt.toutDessiner(g);
+			crt.toutDissenerPolygone(g);
 
 		}
 	}

@@ -1,6 +1,7 @@
 package wargame;
 
 
+import javax.swing.*;
 import java.awt.*;
 
 
@@ -147,4 +148,31 @@ public class Carte implements ICarte {
 			//System.out.println(tabHeros[i].getNumeroSoldat());
 		}
     }
+
+    public void toutDissenerPolygone(Graphics g){
+    	Position p=new Position(200,50);
+		Element tmps=new Element();
+    	for(int i=0;i<IConfig.LARGEUR_CARTE;i++){
+			if(i%2==0) {
+				for (int j = 0; j < IConfig.HAUTEUR_CARTE; j++){
+					if (tabElements[i][j] != null) {
+						tabElements[i][j].seDessinerPolygone(new Position((int) (p.getX() + (i * 1.5 * IConfig.NB_PIX_CASE)),
+								(int) (p.getY() + (j * (2*IConfig.NB_PIX_CASE * Math.sqrt(3) / 2)))), g);
+					}else{
+						tmps.seDessinerPolygone(new Position((int) (p.getX() + (i * 1.5 * IConfig.NB_PIX_CASE)),
+								(int) (p.getY()+ (j * (2*IConfig.NB_PIX_CASE * Math.sqrt(3) / 2)))), g);
+					}
+				}
+			}else{
+				for (int j = 0; j < IConfig.HAUTEUR_CARTE; j++)
+					if (tabElements[i][j] != null) {
+						tabElements[i][j].seDessinerPolygone(new Position((int) (p.getX() + (i * 1.5 * IConfig.NB_PIX_CASE)),
+								(int) (p.getY() + (j * (40 * Math.sqrt(3) / 2))+(IConfig.NB_PIX_CASE * Math.sqrt(3) / 2))), g);
+					}else{
+						tmps.seDessinerPolygone(new Position((int) (p.getX() + (i * 1.5 * IConfig.NB_PIX_CASE)),
+								(int) (p.getY() + (j * (2*IConfig.NB_PIX_CASE  * Math.sqrt(3)/2))+ (IConfig.NB_PIX_CASE * Math.sqrt(3) / 2))), g);
+					}
+				}
+		}
+	}
 }
