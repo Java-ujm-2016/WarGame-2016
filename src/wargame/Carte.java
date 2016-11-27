@@ -1,7 +1,7 @@
 package wargame;
 
 
-import java.awt.Graphics;
+import java.awt.*;
 
 
 public class Carte implements ICarte {
@@ -87,11 +87,16 @@ public class Carte implements ICarte {
                 if (tabElements[i][j] != null) {
                     //System.out.print(tabElements[i][j].coul + " | ");
                     tabElements[i][j].dessinerCarree(i*IConfig.NB_PIX_CASE,j*IConfig.NB_PIX_CASE,g);
+					//tabElements[i][j].seDessinerPolygone(new Position(i*(IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE/2),j*((int)(IConfig.NB_PIX_CASE* Math.sqrt(3))/2)),g);
                 }else{
-                    g.setColor(IConfig.COULEUR_INCONNU);
-                    g.drawRect(i*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, j*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);
+
+					g.setColor(IConfig.COULEUR_TEXTE);
+					Graphics2D g2 = (Graphics2D) g;
+					g2.setStroke(new BasicStroke(2));
+				    g.drawRect(i*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, j*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);
                     g.setColor(IConfig.COULEUR_INCONNU);
                     g.fillRect(i*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, j*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);
+                	//tabElements[i][j].seDessinerPolygone(new Position(i*(IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE/2),j*((int)(IConfig.NB_PIX_CASE* Math.sqrt(3))/2)),g);
                 }
 
             }
@@ -100,6 +105,7 @@ public class Carte implements ICarte {
 		for(int i=0;i<IConfig.LARGEUR_CARTE;i++)
 			for (int j=0;j<IConfig.HAUTEUR_CARTE;j++) {
                 this.tabElements[i][j] = null;
+
                 //this.tabElements[i][j].coul=IConfig.COULEUR_VIDE;
             }
 		}
