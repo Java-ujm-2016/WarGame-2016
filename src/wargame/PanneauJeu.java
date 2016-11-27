@@ -22,7 +22,7 @@ public class PanneauJeu extends JPanel{
 	JLabel label;
 	Carte crt;
 	JPanel zoneDessin;
-	
+
 	public PanneauJeu(){
 		super();
 		crt=new Carte();
@@ -75,8 +75,6 @@ public class PanneauJeu extends JPanel{
 			super.paintComponent(g);
 			//g.drawRect(100,100, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);
 			crt.toutDessiner(g);
-			//crt.tabElements[5][5].dessinerCarree(100,100,g);
-			//System.out.println("\n------------ ----------- ---------------------\n");
 
 		}
 	}
