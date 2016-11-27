@@ -38,7 +38,7 @@ public class Soldat extends Element implements ISoldat {
 		this.portee = porte;
 		this.puissance=puissancef;
 		this.tir=puissancet;
-		this.numsoldat = numerosoldat;
+		numeroSoldat = numerosoldat;
 		pos= new Position(posSoldat);
 		
 	}

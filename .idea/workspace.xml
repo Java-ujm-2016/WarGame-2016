@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b7c1d37d-d6d4-4b55-bff2-5c8aef9b4d4f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wargame/Element.java" afterPath="$PROJECT_DIR$/src/wargame/Element.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,12 +25,32 @@
       <file leaf-file-name="Element.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/wargame/Element.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+            <state relative-caret-position="828">
+              <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
               <folding>
-                <element signature="e#191#192#0" expanded="true" />
-                <element signature="e#213#214#0" expanded="true" />
+                <element signature="e#222#223#0" expanded="true" />
+                <element signature="e#244#245#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/wargame/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="17" column="41" lean-forward="true" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Soldat.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/wargame/Soldat.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="650">
+              <caret line="40" column="20" lean-forward="false" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -37,8 +58,8 @@
       <file leaf-file-name="Carte.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/wargame/Carte.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="96" column="56" lean-forward="true" selection-start-line="96" selection-start-column="56" selection-end-line="96" selection-end-column="56" />
+            <state relative-caret-position="504">
+              <caret line="88" column="20" lean-forward="false" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -91,14 +112,14 @@
         <option value="$PROJECT_DIR$/src/wargame/ISoldat.java" />
         <option value="$PROJECT_DIR$/src/wargame/Obstacle.java" />
         <option value="$PROJECT_DIR$/src/wargame/Heros.java" />
-        <option value="$PROJECT_DIR$/src/wargame/Soldat.java" />
         <option value="$PROJECT_DIR$/src/wargame/Monstre.java" />
-        <option value="$PROJECT_DIR$/src/wargame/Main.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/wargame/Polygone.java" />
-        <option value="$PROJECT_DIR$/src/wargame/Element.java" />
-        <option value="$PROJECT_DIR$/src/wargame/Carte.java" />
         <option value="$PROJECT_DIR$/src/wargame/PanneauJeu.java" />
+        <option value="$PROJECT_DIR$/src/wargame/Carte.java" />
+        <option value="$PROJECT_DIR$/src/wargame/Soldat.java" />
+        <option value="$PROJECT_DIR$/src/wargame/Main.java" />
+        <option value="$PROJECT_DIR$/src/wargame/Element.java" />
       </list>
     </option>
   </component>
@@ -662,7 +683,7 @@
       <workItem from="1480210597854" duration="41000" />
       <workItem from="1480243180553" duration="345000" />
       <workItem from="1480243554829" duration="525000" />
-      <workItem from="1480246327496" duration="10930000" />
+      <workItem from="1480246327496" duration="15107000" />
     </task>
     <task id="LOCAL-00001" summary="quelque modification">
       <created>1480173492168</created>
@@ -720,15 +741,29 @@
       <option name="project" value="LOCAL" />
       <updated>1480258771332</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Modification :adding Numero Soldat au chaque cas">
+      <created>1480261590930</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1480261590930</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Modification :adding Numero Soldat au chaque cas">
+      <created>1480261885901</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1480261885901</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46283000" />
+    <option name="totallyTimeSpent" value="50460000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="29" width="3840" height="2131" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -805,7 +840,8 @@
     <MESSAGE value="Modifie Class Carte" />
     <MESSAGE value="modife Class Element" />
     <MESSAGE value="modife Workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="modife Workspace.xml" />
+    <MESSAGE value="Modification :adding Numero Soldat au chaque cas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modification :adding Numero Soldat au chaque cas" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -900,32 +936,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wargame/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wargame/Soldat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/wargame/Monstre.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -961,21 +975,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/wargame/Soldat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="40" column="20" lean-forward="false" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/wargame/Carte.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="96" column="56" lean-forward="true" selection-start-line="96" selection-start-column="56" selection-end-line="96" selection-end-column="56" />
+        <state relative-caret-position="504">
+          <caret line="88" column="20" lean-forward="false" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wargame/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="17" column="41" lean-forward="true" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/wargame/Element.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        <state relative-caret-position="828">
+          <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
           <folding>
-            <element signature="e#191#192#0" expanded="true" />
-            <element signature="e#213#214#0" expanded="true" />
+            <element signature="e#222#223#0" expanded="true" />
+            <element signature="e#244#245#0" expanded="true" />
           </folding>
         </state>
       </provider>
