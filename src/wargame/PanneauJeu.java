@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
@@ -25,7 +27,6 @@ public class PanneauJeu extends JPanel{
 
 	public PanneauJeu(){
 		super();
-		crt=new Carte();
 		buttonsPannel=new JPanel();
 		finTour=new JButton("Fin Tour");
 		buttonsPannel.setPreferredSize(new Dimension(200,90));
@@ -79,6 +80,16 @@ public class PanneauJeu extends JPanel{
 			super();
 			setBackground(new Color(166,166,166));
 			setPreferredSize(new Dimension(IConfig.WIDTH, IConfig.HIGHT));
+			crt=new Carte();
+			addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					if(e.getButton() == MouseEvent.BUTTON1 ){
+
+						System.out.println("clicked");
+					}
+				}
+
+			});
 
 
 		}

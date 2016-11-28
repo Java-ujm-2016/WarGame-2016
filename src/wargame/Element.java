@@ -62,12 +62,17 @@ public  class Element implements IConfig {
 			g.setColor(coul);
 			g.fillPolygon(ensPointX, ensPointY, 6);
 			if(numeroSoldat!=0) {
-				g.setColor(Color.YELLOW);
-				Font font = g.getFont().deriveFont( 22.0f );
-				g.setFont( font );
-				g.drawString(numeroSoldat + "", centre.getX()-11, centre.getY()+6);
-			}
+				Font font = g.getFont().deriveFont(22.0f);
+				g.setFont(font);
+				if (this instanceof Monstre) {
+					g.setColor(IConfig.COULEUR_VIDE);
+					g.drawString(numeroSoldat + "", centre.getX() - 11, centre.getY() + 6);
+				} else {
+					g.setColor(IConfig.COULEUR_VIDE);
+					g.drawString(((char) (numeroSoldat + 96)) + "", centre.getX() - 11, centre.getY() + 6);
 
+				}
+			}
 		} else {
 			g.setColor(IConfig.COULEUR_INCONNU);
 			g.fillPolygon(ensPointX, ensPointY, 6);
