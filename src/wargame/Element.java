@@ -69,7 +69,7 @@ public  class Element implements IConfig {
 					g.drawString(numeroSoldat + "", centre.getX() - 11, centre.getY() + 6);
 				} else {
 					g.setColor(IConfig.COULEUR_VIDE);
-					g.drawString(((char) (numeroSoldat + 96)) + "", centre.getX() - 11, centre.getY() + 6);
+					g.drawString(((char) (numeroSoldat + 64)) + "", centre.getX() - 11, centre.getY() + 6);
 
 				}
 			}

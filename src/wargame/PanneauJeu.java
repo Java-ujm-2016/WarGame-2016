@@ -81,7 +81,7 @@ public class PanneauJeu extends JPanel{
 			setBackground(new Color(166,166,166));
 			setPreferredSize(new Dimension(IConfig.WIDTH, IConfig.HIGHT));
 			crt=new Carte();
-			addMouseListener(new MouseAdapter() {
+/*			addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					if(e.getButton() == MouseEvent.BUTTON1 ){
 
@@ -89,7 +89,7 @@ public class PanneauJeu extends JPanel{
 					}
 				}
 
-			});
+			});*/
 
 
 		}

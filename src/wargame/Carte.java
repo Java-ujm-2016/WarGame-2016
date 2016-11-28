@@ -3,6 +3,10 @@ package wargame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
 
 
 public class Carte implements ICarte {
@@ -17,7 +21,17 @@ public class Carte implements ICarte {
         createMonstre();
         createHeros();
         System.out.println("\n\n");
+
         System.out.println("**************************** Fin Creation *************************************");
+		addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if(e.getButton() == MouseEvent.BUTTON1 ){
+
+					System.out.println("clicked");
+				}
+			}
+
+		});
         /*for(int i=0;i<IConfig.HAUTEUR_CARTE;i++){
             for(int j=0; j< IConfig.LARGEUR_CARTE;j++) {
                 if(tabElements[i][j]!=null)

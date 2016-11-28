@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7c1d37d-d6d4-4b55-bff2-5c8aef9b4d4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wargame/Carte.java" afterPath="$PROJECT_DIR$/src/wargame/Carte.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wargame/Element.java" afterPath="$PROJECT_DIR$/src/wargame/Element.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wargame/PanneauJeu.java" afterPath="$PROJECT_DIR$/src/wargame/PanneauJeu.java" />
     </list>
@@ -26,8 +26,8 @@
       <file leaf-file-name="PanneauJeu.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/wargame/PanneauJeu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="296">
+              <caret line="83" column="2" lean-forward="false" selection-start-line="83" selection-start-column="2" selection-end-line="91" selection-end-column="15" />
               <folding>
                 <element signature="method#PanneauJeu#0;class#PanneauJeu#0" expanded="false" />
                 <element signature="class#MyAdjustmentListener#0;class#PanneauJeu#0" expanded="false" />
@@ -46,25 +46,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Element.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Element.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/wargame/Element.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="64" column="53" lean-forward="false" selection-start-line="64" selection-start-column="53" selection-end-line="64" selection-end-column="53" />
+            <state relative-caret-position="631">
+              <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Carte.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Carte.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/wargame/Carte.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="972">
-              <caret line="75" column="4" lean-forward="false" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
+            <state relative-caret-position="847">
+              <caret line="33" column="11" lean-forward="false" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2222#2223#0" expanded="true" />
-                <element signature="e#2241#2242#0" expanded="true" />
+                <element signature="e#743#906#0" expanded="true" />
+                <element signature="e#905#906#0" expanded="true" />
+                <element signature="e#2559#2560#0" expanded="true" />
+                <element signature="e#2578#2579#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,9 +114,9 @@
         <option value="$PROJECT_DIR$/src/wargame/Soldat.java" />
         <option value="$PROJECT_DIR$/src/wargame/Main.java" />
         <option value="$PROJECT_DIR$/src/wargame/MonFrame.java" />
-        <option value="$PROJECT_DIR$/src/wargame/Carte.java" />
-        <option value="$PROJECT_DIR$/src/wargame/PanneauJeu.java" />
         <option value="$PROJECT_DIR$/src/wargame/Element.java" />
+        <option value="$PROJECT_DIR$/src/wargame/PanneauJeu.java" />
+        <option value="$PROJECT_DIR$/src/wargame/Carte.java" />
       </list>
     </option>
   </component>
@@ -685,7 +687,7 @@
       <workItem from="1480268348227" duration="1000" />
       <workItem from="1480269349185" duration="13207000" />
       <workItem from="1480335873118" duration="630000" />
-      <workItem from="1480362749223" duration="1184000" />
+      <workItem from="1480362749223" duration="2866000" />
     </task>
     <task id="LOCAL-00001" summary="quelque modification">
       <created>1480173492168</created>
@@ -761,7 +763,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67085000" />
+    <option name="totallyTimeSpent" value="68767000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="29" width="3840" height="2131" extended-state="6" />
@@ -1147,13 +1149,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wargame/ICarte.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/wargame/Polygone.java" />
     <entry file="file://$PROJECT_DIR$/src/wargame/Soldat.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1183,15 +1178,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wargame/Carte.java">
+    <entry file="file://$PROJECT_DIR$/src/wargame/ICarte.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="75" column="4" lean-forward="false" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2222#2223#0" expanded="true" />
-            <element signature="e#2241#2242#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1205,8 +1196,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/wargame/PanneauJeu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="296">
+          <caret line="83" column="2" lean-forward="false" selection-start-line="83" selection-start-column="2" selection-end-line="91" selection-end-column="15" />
           <folding>
             <element signature="method#PanneauJeu#0;class#PanneauJeu#0" expanded="false" />
             <element signature="class#MyAdjustmentListener#0;class#PanneauJeu#0" expanded="false" />
@@ -1216,9 +1207,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/wargame/Element.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="64" column="53" lean-forward="false" selection-start-line="64" selection-start-column="53" selection-end-line="64" selection-end-column="53" />
+        <state relative-caret-position="631">
+          <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wargame/Carte.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="847">
+          <caret line="33" column="11" lean-forward="false" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#743#906#0" expanded="true" />
+            <element signature="e#905#906#0" expanded="true" />
+            <element signature="e#2559#2560#0" expanded="true" />
+            <element signature="e#2578#2579#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
