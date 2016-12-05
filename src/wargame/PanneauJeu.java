@@ -10,7 +10,7 @@ import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import java.awt.event.MouseListener;
 import javax.swing.*;
 
 public class PanneauJeu extends JPanel{
@@ -78,10 +78,16 @@ public class PanneauJeu extends JPanel{
 	public class PanneauDessin extends JPanel {
 		public PanneauDessin(){
 			super();
+
 			setBackground(new Color(166,166,166));
 			setPreferredSize(new Dimension(IConfig.WIDTH, IConfig.HIGHT));
 			crt=new Carte();
-/*			addMouseListener(new MouseAdapter() {
+
+
+
+
+			//add(crt);
+			/*			addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					if(e.getButton() == MouseEvent.BUTTON1 ){
 
@@ -98,6 +104,8 @@ public class PanneauJeu extends JPanel{
 			super.paintComponent(g);
 			//g.drawRect(100,100, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);
 			//crt.toutDessiner(g);
+
+
 			crt.toutDissenerPolygone(g);
 
 		}
