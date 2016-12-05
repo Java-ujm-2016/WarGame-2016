@@ -1,5 +1,4 @@
 /bin/
-.idea/workspace.xml
 .settings/
 .project
-.idea/*
+.idea/
