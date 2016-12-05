@@ -1,7 +1,7 @@
 package wargame;
 
 
-import javax.swing.*;
+
 import java.awt.*;
 
 
@@ -17,15 +17,10 @@ public class Carte implements ICarte {
         createMonstre();
         createHeros();
         System.out.println("\n\n");
+
         System.out.println("**************************** Fin Creation *************************************");
-        /*for(int i=0;i<IConfig.HAUTEUR_CARTE;i++){
-            for(int j=0; j< IConfig.LARGEUR_CARTE;j++) {
-                if(tabElements[i][j]!=null)
-                System.out.print("Position : "+tabElements[i][j].pos+" "+tabElements[i][j].coul);
-            }
-            System.out.print("\n");
-        }*/
-    }
+
+	}
 	
 	
 	public Element getElement(Position pos){
@@ -174,5 +169,9 @@ public class Carte implements ICarte {
 					}
 				}
 		}
+	}
+
+	public Element[][] getTabElements() {
+		return tabElements;
 	}
 }
