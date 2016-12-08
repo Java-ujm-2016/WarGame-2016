@@ -9,7 +9,7 @@ package wargame;
 import java.awt.*;
 import java.io.Serializable;
 
-public class Carte implements ICarte {
+public class Carte implements ICarte, Serializable {
 	protected Element[][] tabElements;
 	protected Obstacle[] tabObstacle;
     protected Heros[] tabHeros;
