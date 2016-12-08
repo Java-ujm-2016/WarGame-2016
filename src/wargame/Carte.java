@@ -10,7 +10,7 @@ import java.awt.*;
 import java.io.Serializable;
 
 public class Carte implements ICarte, Serializable {
-	protected Element[][] tabElements;
+	protected Element[][] tabElements = null;
 	protected Obstacle[] tabObstacle;
     protected Heros[] tabHeros;
     protected Monstre[] tabMonstre;
@@ -78,9 +78,15 @@ public class Carte implements ICarte, Serializable {
 									 // parmi les 8 positions adjacentes de pos
 	
 	public boolean deplaceSoldat(Position pos, Soldat soldat){
-
-
-		return false;
+		Position p = soldat.getElementPosition();
+		if(tabElements[pos.getX()][pos.getY()] == null){
+			tabElements[p.getX()][p.getY()] = null;
+			soldat.seDeplace(pos);
+			tabElements[pos.getX()][pos.getY()] = soldat;
+			return true;
+		}
+		else
+			return false;
 	}
 	
 	public void mort(Soldat perso){

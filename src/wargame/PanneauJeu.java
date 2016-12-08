@@ -18,6 +18,8 @@ import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseMotionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -150,6 +152,10 @@ public class PanneauJeu extends JPanel {
 	public class PanneauDessin extends JPanel {
 		int panWdth = (2* IConfig.NB_PIX_CASE) * (IConfig.LARGEUR_CARTE + 1) + IConfig.BORDERS * 3;
 		int panHight = (2* IConfig.NB_PIX_CASE )* (IConfig.HAUTEUR_CARTE + 1) +IConfig.BORDERS * 3;
+		
+		Position depart = new Position(IConfig.p);//le decalage sur la zone de dessin
+		int px, py;
+		
 
 		public PanneauDessin() {
 			super(true);
@@ -228,7 +234,34 @@ public class PanneauJeu extends JPanel {
 				}
 
 			});
-
+			
+			//A l'appui sur le bouton de la souris sur la case d'un Soldat 
+			addMouseListener(new MouseAdapter(){
+				public void mousePressed(MouseEvent e){
+					int x = e.getX();
+					int y = e.getY();
+					Position p= new Position(0,0);
+					p= p.pxtoHex(x,y);
+					px=p.getX();
+					py=p.getY();
+				}
+			});
+			
+			//Au glisser-deposer dans une case adjascente
+			addMouseMotionListener(new MouseMotionAdapter(){
+				public void mouseDragged(MouseEvent e){
+					int x = e.getX();
+					int y = e.getY();
+					Position p= new Position(0,0);
+					p= p.pxtoHex(x,y);
+					if(crt.tabElements[px][py] != null){
+						if(crt.tabElements[p.getX()][p.getY()] == null){
+							crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py)));
+						}
+					}
+					repaint();
+				}
+			});
 
 		}
 
