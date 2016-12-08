@@ -6,11 +6,20 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import javax.swing.*;
 
 public class PanneauJeu extends JPanel{
@@ -24,7 +33,9 @@ public class PanneauJeu extends JPanel{
 	JPanel zoneDessin;
 	JButton finTour;
 	JPanel buttonsPannel;
-
+	JButton sauv = new JButton("Sauvegarde");
+	JButton rest = new JButton("Restaurer");
+	
 	public PanneauJeu(){
 		super();
 		buttonsPannel=new JPanel();
@@ -62,7 +73,71 @@ public class PanneauJeu extends JPanel{
 		StatusBar statuBar= new StatusBar();
 		add(statuBar,BorderLayout.SOUTH);
 		setPreferredSize(new Dimension(IConfig.WIDTH, IConfig.HIGHT));
-
+		
+		/*
+		 * Sauvegarde des données  ainsi que leurs restauration du jeu qui seront composés
+		 * carte, Element et Position
+		 */
+		
+		/*
+		 * Sauvegarde
+		 */
+		
+		sauv.setPreferredSize(new Dimension(20,10));
+		add(sauv,BorderLayout.NORTH);
+		
+		
+		sauv.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent agr){
+				try {
+					FileOutputStream fichier = new FileOutputStream("wargame.ser");
+					ObjectOutputStream var = new ObjectOutputStream(fichier);
+					var.writeObject(crt);
+					var.flush();
+					var.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				};
+			}
+		});
+		
+		
+		
+		/*
+		 * Restauration du jeu après une pause
+		 */
+		rest.setPreferredSize(new Dimension(50,30));
+		add(rest,BorderLayout.NORTH);
+		
+		
+		rest.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent a){
+				FileInputStream fichier;
+				try {
+					fichier = new FileInputStream("wargame.ser");
+					ObjectInputStream var = new ObjectInputStream(fichier);
+					Object lect = var.readObject();
+					crt= (Carte) lect;
+					var.close();
+					repaint();
+				//crt.SeDessiner();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	
 	}
 
 	
