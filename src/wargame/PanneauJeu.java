@@ -1,26 +1,18 @@
 package wargame;
-
-<<<<<<< HEAD
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-=======
+
 /*
  *@author AYADA Ahmad
  *
  * */
-import java.awt.*;
-<<<<<<< HEAD
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-=======
->>>>>>> 752ebb6e11c5d5060d086bf91d02da70e1bdd33d
->>>>>>> branch 'developer' of https://github.com/Java-ujm-2016/WarGame-2016
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseAdapter;
@@ -48,24 +40,13 @@ public class PanneauJeu extends JPanel {
 	JPanel zoneDessin;
 	JButton finTour;
 	JPanel buttonsPannel;
-<<<<<<< HEAD
-	JButton sauv = new JButton("Sauvegarde");
-	JButton rest = new JButton("Restaurer");
-	
-	public PanneauJeu(){
-=======
 	StatusBar statuBar;
-	/*
-	 * Boutton pour la sauvergarde et la restauration
-	 * @sauv
-	 * @rest
-	 */
+	
 	JButton sauv;
 	JButton rest;
 	
 
 	public PanneauJeu() {
->>>>>>> 752ebb6e11c5d5060d086bf91d02da70e1bdd33d
 		super();
 		buttonsPannel = new JPanel();
 		finTour = new JButton("Fin Tour");
@@ -95,70 +76,11 @@ public class PanneauJeu extends JPanel {
 		statuBar = new StatusBar();
 		add(statuBar, BorderLayout.SOUTH);
 		setPreferredSize(new Dimension(IConfig.WIDTH, IConfig.HIGHT));
-		
-<<<<<<< HEAD
-		
-		/*Méthode pour la sauvegarde*/
-		
-		sauv.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent agr){
-				try {
-					FileOutputStream fichier = new FileOutputStream("Wargame.ser");
-					ObjectOutputStream var = new ObjectOutputStream(fichier);
-					var.writeObject(crt);
-					var.flush();
-					var.close();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				};
-			}
-		});
-		
-		
-		/*
-		 * methode restauration
-		 */
-		
-		rest.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent agr){
-				FileInputStream fichier;
-				try {
-					fichier = new FileInputStream("Wargame.ser");
-					ObjectInputStream var = new ObjectInputStream(fichier);
-					Object lect = var.readObject();
-					crt= (Carte) lect;
-					var.close();
-					repaint();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
 
-=======
 		/*
 		 * Sauvegarde des données  ainsi que leurs restauration du jeu qui seront composés
 		 * carte, Element et Position
 		 */
-		
-		/*
-		 * Sauvegarde
-		 */
-		
-		sauv.setPreferredSize(new Dimension(20,10));
-		add(sauv,BorderLayout.NORTH);
-		
 		
 		sauv.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent agr){
@@ -183,9 +105,6 @@ public class PanneauJeu extends JPanel {
 		/*
 		 * Restauration du jeu après une pause
 		 */
-		rest.setPreferredSize(new Dimension(50,30));
-		add(rest,BorderLayout.NORTH);
-		
 		
 		rest.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent a){
@@ -211,7 +130,7 @@ public class PanneauJeu extends JPanel {
 			}
 		});
 	
->>>>>>> branch 'developer' of https://github.com/Java-ujm-2016/WarGame-2016
+
 	}
 	
 	
