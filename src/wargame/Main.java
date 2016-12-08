@@ -31,15 +31,15 @@ public class Main {
 		Set<Object> keySet = UIManager.getLookAndFeelDefaults().keySet();
 
 		Object[] keys = keySet.toArray(new Object[keySet.size()]);
-		for (Object key : keys) {
+	for (Object key : keys) {
 
 			if (key != null && key.toString().toLowerCase().contains("font")) {
 
-				System.out.println(key);
+		System.out.println(key);
 				Font font = UIManager.getDefaults().getFont(key);
 				if (font != null) {
 					font = font.deriveFont((float) size);
-					UIManager.put(key, font);
+								UIManager.put(key, font);
 				}
 
 			}
