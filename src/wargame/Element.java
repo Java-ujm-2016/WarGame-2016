@@ -8,7 +8,7 @@ package wargame;
  * @see class IConfig
  * */
 import java.awt.*;
-
+import java.io.Serializable;
 public  class Element implements IConfig {
 	protected Color coul = IConfig.COULEUR_VIDE;
 	protected Position pos;
