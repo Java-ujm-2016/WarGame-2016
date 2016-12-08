@@ -1,7 +1,7 @@
 package wargame;
 
 import java.awt.Graphics;
-
+import java.io.Serializable;
 public class Soldat extends Element implements ISoldat {
 	
 
