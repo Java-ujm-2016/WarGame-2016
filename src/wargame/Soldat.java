@@ -228,7 +228,7 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	 */
 	public void seDeplace(Position newPos) {
 		// TODO Auto-generated method stub
-		
+		this.pos = newPos;
 	}
 	
 	/*
