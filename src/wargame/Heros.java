@@ -36,12 +36,14 @@ public class Heros extends Soldat {
 		}
 		this.setJoueTour(1);
 	}
-	
-	public String toString(){
+
+	public String affiche(){
     	return  "Type Hero : "+ tHero+", numéro : "+(numsoldat) + ", points de vie : "+ ptvi + " / points de vie max : " + POINTS_DE_VIE_MAX + ", portée : " + portee + ", puissance : "+puissance+"\nPosition "+pos+"\n";
 
     }
-
+	public String toString(){
+		return  "Type Hero : "+ tHero+" "+pos;
+	}
 
 
 }
