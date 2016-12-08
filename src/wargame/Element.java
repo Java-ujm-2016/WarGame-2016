@@ -9,7 +9,7 @@ package wargame;
  * */
 import java.awt.*;
 import java.io.Serializable;
-public  class Element implements IConfig {
+public  class Element implements IConfig, Serializable{
 	protected Color coul = IConfig.COULEUR_VIDE;
 	protected Position pos;
 	protected int numeroSoldat=0;
