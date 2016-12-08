@@ -7,7 +7,7 @@ package wargame;
 
 
 import java.awt.*;
-
+import java.io.Serializable;
 
 public class Carte implements ICarte {
 	protected Element[][] tabElements;
@@ -27,7 +27,7 @@ public class Carte implements ICarte {
 	}
 	
 	/*
-	* Methode "getElement" chereche un element dans tableau de Dim
+	* Methode "getElement" cherche un element dans un tableau de Dimension 2
 	* @param pos est la Position de point
 	* @return tabElement[p.getX()][p.getY()] l'element se trouve dans la Position entré
 	* */
