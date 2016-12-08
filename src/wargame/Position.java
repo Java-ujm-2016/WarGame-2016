@@ -1,6 +1,6 @@
 package wargame;
 import java.io.Serializable;
-public class Position implements IConfig {
+public class Position implements IConfig, Serializable{
 	private int x, y;
 	Position(int x, int y) { this.x = x; this.y = y; }
 	Position(Position p){this.x = p.x;this.y =p.y; }
