@@ -9,7 +9,7 @@ public interface IConfig {
 	Color COULEUR_TEXTE = Color.black, COULEUR_MONSTRES = Color.black;
 	Color COULEUR_HEROS = Color.red, COULEUR_HEROS_DEJA_JOUE = Color.pink;
 	Color COULEUR_EAU = Color.blue, COULEUR_FORET = Color.green, COULEUR_ROCHER = Color.gray;
-	int WIDTH=1200; int HIGHT=800;
+	int WIDTH=1200; int HIGHT=600;
 	final static int BORDERS = 40;
 	Position p=new Position(IConfig.BORDERS, IConfig.BORDERS);
 }
