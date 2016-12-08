@@ -2,7 +2,8 @@ package wargame;
 
 import java.awt.Graphics;
 import java.io.Serializable;
-public class Soldat extends Element implements ISoldat {
+
+public class Soldat extends Element implements ISoldat,Serializable{
 	
 
 	protected int djoue; /*pour savoir si un joueur a deja jouer*/
@@ -20,12 +21,12 @@ public class Soldat extends Element implements ISoldat {
 	/*le constructeur soldat avec les différents parametres
 	 * 
 	 * 
-	 * @pointv qui retourne les points de vi d'un soldat donnée
-	 * @portée retourne la portée d'un soldat c'est à dire sa distance par rapport à un autre soldat
-	 * @puissance retourne la puissance de frappe d'un soladat pour  un corps à corps
-	 * @tir retourne la puissance de tir d'un soldat pour un combat a distance
-	 * @numsoldat permet de récupérer le numéro associé à un soldat
-	 * @soldatpos renvoie la position d'un soladat qui est récupéré dans la classe Element
+	 * @param pointv qui retourne les points de vi d'un soldat donnée
+	 * @param portée retourne la portée d'un soldat c'est à dire sa distance par rapport à un autre soldat
+	 * @param puissance retourne la puissance de frappe d'un soladat pour  un corps à corps
+	 * @param tir retourne la puissance de tir d'un soldat pour un combat a distance
+	 * @param numsoldat permet de récupérer le numéro associé à un soldat
+	 * @param soldatpos renvoie la position d'un soladat qui est récupéré dans la classe Element
 	 * 
 	 */
 	
@@ -44,6 +45,7 @@ public class Soldat extends Element implements ISoldat {
 	}
 /*
  * les différents accesseurs des variables de la classe soldat
+ * @return ptvi
  */
 
 	@Override
@@ -52,7 +54,11 @@ public class Soldat extends Element implements ISoldat {
 		return this.ptvi;
 	}
 
-
+/*savoir si un joueur a déja joué
+ * (non-Javadoc)
+ * @see wargame.ISoldat#getTour()
+ * @return djoue
+ */
 	@Override
 	public int getTour() {
 		// TODO Auto-generated method stub
@@ -129,6 +135,7 @@ public class Soldat extends Element implements ISoldat {
 	 * (non-Javadoc)
 	 * @see wargame.ISoldat#joueTour(int)
 	 * casecolor est défini dans la classe Element
+	 * @param tour
 	 */
 	public void joueTour(int tour) {
 		// TODO Auto-generated method stub
@@ -148,6 +155,7 @@ public class Soldat extends Element implements ISoldat {
  * @see wargame.ISoldat#combat(wargame.Soldat)
  * cette méthode permet d'implémenter le combat entre deux soldats à savoir entre
  * entre un hero et un monstre
+ * @param soldat
  */
 	@Override
 	public void combat(Soldat soldat) {
@@ -216,6 +224,7 @@ public class Soldat extends Element implements ISoldat {
 	 * (non-Javadoc)
 	 * @see wargame.ISoldat#seDeplace(wargame.Position)
 	 * méthode pour implémenter le déplacement d'un soldat sur la carte
+	 * @param newPos
 	 */
 	public void seDeplace(Position newPos) {
 		// TODO Auto-generated method stub
@@ -253,6 +262,8 @@ public class Soldat extends Element implements ISoldat {
     	}	
 		
 	}
+	
+	
 
 	
 
