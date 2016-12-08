@@ -1,5 +1,12 @@
 package wargame;
-
+/*
+ *
+ * Class Elment
+ * Le Classe de création des Element +
+  * plus leur form (Carré ou Hexagone)
+ * @author AYADA Ahmad
+ * @see class IConfig
+ * */
 import java.awt.*;
 
 public  class Element implements IConfig {
@@ -10,6 +17,15 @@ public  class Element implements IConfig {
 	public Position getElementPosition() {
 		return this.pos;
 	}
+
+	/*
+	* Methode seDessinerCaree
+	* il s'agit a dessiner un
+	* @param x le point x où l'angle haut de carré
+	* @param y le point y où l'angle haut de carré
+	* @ g Graphics
+	* */
+
 
 	public void dessinerCarree(int x, int y, Graphics g) {
 		g.setColor(Color.yellow);
@@ -26,8 +42,10 @@ public  class Element implements IConfig {
 	}
 
 	/*
-	* Polygone Regulier
-	* @param Centre Position de point centre de Polygone
+	* Methode seDessinerPolygone
+	* il s'agit a dessiner un Polygone Regulier
+	* @param centre Position de point centre de Polygone
+	* @ g Graphics
 	* */
 	public void seDessinerPolygone(Position centre,Graphics g) {
 		Position[] tab = new Position[6];

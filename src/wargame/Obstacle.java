@@ -19,5 +19,5 @@ public class Obstacle extends Element {
 		this.TYPE=TypeObstacle.getObstacleAlea();
 		coul=TYPE.getCouleur();
 	}
-	public String toString() { return ""+TYPE; }
+	public String toString() { return ""+TYPE+" "+pos; }
 }

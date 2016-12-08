@@ -1,4 +1,8 @@
 package wargame;
+/*
+ *@author AYADA Ahmad
+ *
+ * */
 
 import javax.swing.*;
 import java.awt.*;

@@ -20,6 +20,9 @@ public class StatusBar extends JLabel {
     }
      
     public void setMessage(String message) {
-        setText(" "+message);        
+        if(message==null)
+            throw new IndexOutOfBoundsException();
+        else
+         setText(""+message);
     }        
 }
