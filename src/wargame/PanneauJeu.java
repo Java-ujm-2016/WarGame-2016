@@ -5,16 +5,26 @@ package wargame;
  *
  * */
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import javax.swing.*;
 
 public class PanneauJeu extends JPanel {
 	/**
-	 *
+	 *Cette classe contient tous les boutton necessaire à l'utilisation 
+	 *du projet ainsi que les évènement souris	
 	 */
 
 	private static final long serialVersionUID = 1L;
@@ -25,20 +35,35 @@ public class PanneauJeu extends JPanel {
 	JButton finTour;
 	JPanel buttonsPannel;
 	StatusBar statuBar;
+	/*
+	 * Boutton pour la sauvergarde et la restauration
+	 * @sauv
+	 * @rest
+	 */
+	JButton sauv;
+	JButton rest;
+	
+
 	public PanneauJeu() {
 		super();
 		buttonsPannel = new JPanel();
 		finTour = new JButton("Fin Tour");
 		buttonsPannel.setPreferredSize(new Dimension(200, 90));
 		buttonsPannel.setBackground(Color.GRAY);
-
+		sauv = new JButton("Sauvegarde");
+		rest = new JButton("Restaurer");
+		
 		label = new JLabel();
 		setLayout(new BorderLayout());
 		add(buttonsPannel, BorderLayout.NORTH);
 		finTour.setPreferredSize(new Dimension(180, 80));
 		//add(finTour,BorderLayout.NORTH);
 		buttonsPannel.add(finTour, BorderLayout.NORTH);
-
+		
+		sauv.setPreferredSize(new Dimension(180, 80));
+		rest.setPreferredSize(new Dimension(180, 80));
+		buttonsPannel.add(sauv,BorderLayout.NORTH);
+		buttonsPannel.add(rest,BorderLayout.NORTH);
 
 		zoneDessin = new PanneauDessin();
 
@@ -49,9 +74,59 @@ public class PanneauJeu extends JPanel {
 		statuBar = new StatusBar();
 		add(statuBar, BorderLayout.SOUTH);
 		setPreferredSize(new Dimension(IConfig.WIDTH, IConfig.HIGHT));
+		
+		
+		/*Méthode pour la sauvegarde*/
+		
+		sauv.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent agr){
+				try {
+					FileOutputStream fichier = new FileOutputStream("Wargame.ser");
+					ObjectOutputStream var = new ObjectOutputStream(fichier);
+					var.writeObject(crt);
+					var.flush();
+					var.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				};
+			}
+		});
+		
+		
+		/*
+		 * methode restauration
+		 */
+		
+		rest.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent agr){
+				FileInputStream fichier;
+				try {
+					fichier = new FileInputStream("Wargame.ser");
+					ObjectInputStream var = new ObjectInputStream(fichier);
+					Object lect = var.readObject();
+					crt= (Carte) lect;
+					var.close();
+					repaint();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 
 	}
-
+	
+	
 
 	class MyAdjustmentListener implements AdjustmentListener {
 		public void adjustmentValueChanged(AdjustmentEvent e) {
