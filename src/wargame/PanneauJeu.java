@@ -24,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 import javax.swing.*;
 
@@ -81,8 +82,11 @@ public class PanneauJeu extends JPanel {
 		 * Sauvegarde des données  ainsi que leurs restauration du jeu qui seront composés
 		 * carte, Element et Position
 		 */
+		/*instanciation de la carte pour son utilisation*/
 		
-		sauv.addActionListener(new ActionListener(){
+		//crt = new Carte();
+		
+	/*	sauv.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent agr){
 				try {
 					FileOutputStream fichier = new FileOutputStream("wargame.ser");
@@ -106,8 +110,8 @@ public class PanneauJeu extends JPanel {
 		 * Restauration du jeu après une pause
 		 */
 		
-		rest.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent a){
+	/*	rest.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent agr){
 				FileInputStream fichier;
 				try {
 					fichier = new FileInputStream("wargame.ser");
@@ -128,7 +132,7 @@ public class PanneauJeu extends JPanel {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 	
 
 	}
@@ -151,7 +155,58 @@ public class PanneauJeu extends JPanel {
 			super(true);
 
 			crt = new Carte();
-
+			
+/**********************************SAUVEGARDE RESTAURATION************************/
+			
+			sauv.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent agr){
+					try {
+						FileOutputStream fichier = new FileOutputStream("wargame.ser");
+						ObjectOutputStream var = new ObjectOutputStream(fichier);
+						var.writeObject(crt);
+						var.flush();
+						var.close();
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					};
+				}
+			});
+			
+			
+			
+			/*
+			 * Restauration du jeu après une pause
+			 */
+			
+			rest.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent agr){
+					FileInputStream fichier;
+					try {
+						fichier = new FileInputStream("wargame.ser");
+						ObjectInputStream var = new ObjectInputStream(fichier);
+						Object lect = var.readObject();
+						crt= (Carte) lect;
+						var.close();
+						repaint();
+					//crt.SeDessiner();
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
+			
+			
 			addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					int x = e.getX();
