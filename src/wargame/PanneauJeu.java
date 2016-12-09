@@ -214,24 +214,6 @@ public class PanneauJeu extends JPanel {
 			
 			
 			addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent e) {
-					int x = e.getX();
-					int y = e.getY();
-					Position p= new Position(0,0);
-					p= p.pxtoHex(x,y);
-
-					if(e.getButton() == MouseEvent.BUTTON1 ){
-						if (p.getX() < 0 || p.getY() < 0 || p.getX() >= IConfig.LARGEUR_CARTE || p.getY() >= IConfig.HAUTEUR_CARTE) return;
-						try {
-							statuBar.setMessage(crt.getElement(p).toString());
-						}catch (NullPointerException e1){
-							statuBar.setMessage(p.toString()+"");
-							System.out.println("NO ELEMENT\n");
-							//return;
-						}
-						System.out.println(crt.getElement(p));
-					}
-				}
 
 			});
 			
@@ -261,8 +243,34 @@ public class PanneauJeu extends JPanel {
 					}
 					repaint();
 				}
-			});
+				
+				//Au survol d'une case de la carte on affiche les infos sur 
+				//l'element qui s'y trouve
+				public void mouseMoved(MouseEvent e) {
+					int x = e.getX();
+					int y = e.getY();
+					Position p= new Position(0,0);
+					p= p.pxtoHex(x,y);
 
+					/*if(e.getButton() == MouseEvent.BUTTON1 ){
+						if (p.getX() < 0 || p.getY() < 0 || p.getX() >= IConfig.LARGEUR_CARTE || p.getY() >= IConfig.HAUTEUR_CARTE) return;
+						try {
+							
+						}catch (NullPointerException e1){
+							
+							System.out.println("NO ELEMENT\n");
+							//return;
+						}
+						//System.out.println(crt.getElement(p));
+					}*/
+					if(crt.getElement(p) != null)
+						statuBar.setMessage(crt.getElement(p).toString());
+					else
+						statuBar.setMessage(" case vide " + p.toString());
+					repaint();
+				}
+			});
+			
 		}
 
 		public void paintComponent(Graphics g) {
