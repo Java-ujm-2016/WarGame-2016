@@ -240,6 +240,13 @@ public class PanneauJeu extends JPanel {
 						if(crt.tabElements[p.getX()][p.getY()] == null){
 							crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py)));
 						}
+						
+						if(crt.tabElements[p.getX()][p.getY()] instanceof Soldat){
+							//System.out.println("un combat est lancé");
+							Soldat soldat1 = (Soldat) crt.getElement(new Position(px,py));
+							Soldat soldat2 = (Soldat)crt.getElement(p);
+							soldat1.combat(soldat2);
+						}
 					}
 					repaint();
 				}

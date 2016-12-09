@@ -59,24 +59,24 @@ public class Carte implements ICarte, Serializable {
 			return (new Position(pos));
 		else return null;
 	}
-	// aléatoirement parmi les 8 positions adjacentes de pos
+	
+	// aléatoirement parmi les 8 positions adjacentes de pos Trouve aléatoirement un héros sur la carte
 	public Heros trouveHeros(){
-		// Trouve aléatoirement un héros sur la carte
 		int num=(int)Math.random() * tabHeros.length;
 		if(tabHeros[num] != null)
-			return(tabHeros[num]) ;
+			return(tabHeros[num]);
 		else
 			return null;
 	}
 	
+	//Trouve un héros choisi aléatoirement parmi les 8 positions adjacentes de pos
 	public Heros trouveHeros(Position pos){
-		// Trouve un héros choisi aléatoirement
 		if (tabElements[pos.getX()][pos.getY()] instanceof  Heros)
 			return((Heros) tabElements[pos.getX()][pos.getY()]);
 		else return null;
 	}
-									 // parmi les 8 positions adjacentes de pos
 	
+	//
 	public boolean deplaceSoldat(Position pos, Soldat soldat){
 		Position p = soldat.getElementPosition();
 		if(tabElements[pos.getX()][pos.getY()] == null){

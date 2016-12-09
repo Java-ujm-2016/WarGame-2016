@@ -164,8 +164,10 @@ public class Soldat extends Element implements ISoldat,Serializable{
 		int puisf1; /***@puisf1 puissance de frappe pour un corps à corps**/
 		int puisf2;  /***@puisf2 puissance de frappe pour un combat à distance**/
 		
-		if(((this instanceof Heros) && (soldat instanceof Monstre)) || ((this instanceof Monstre) && (soldat instanceof Heros))){
+		if(((this instanceof Heros) && (soldat instanceof Monstre)) 
+				|| ((this instanceof Monstre) && (soldat instanceof Heros))){
 			
+			System.out.println("un combat est lancé");
 			/***combat corps à corps*/
 			
 			if(this.pos.estVoisine( soldat.pos) ){
