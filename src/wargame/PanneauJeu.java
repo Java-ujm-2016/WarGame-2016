@@ -252,17 +252,6 @@ public class PanneauJeu extends JPanel {
 					Position p= new Position(0,0);
 					p= p.pxtoHex(x,y);
 
-					/*if(e.getButton() == MouseEvent.BUTTON1 ){
-						if (p.getX() < 0 || p.getY() < 0 || p.getX() >= IConfig.LARGEUR_CARTE || p.getY() >= IConfig.HAUTEUR_CARTE) return;
-						try {
-							
-						}catch (NullPointerException e1){
-							
-							System.out.println("NO ELEMENT\n");
-							//return;
-						}
-						//System.out.println(crt.getElement(p));
-					}*/
 					if(crt.getElement(p) != null)
 						statuBar.setMessage(crt.getElement(p).toString());
 					else
