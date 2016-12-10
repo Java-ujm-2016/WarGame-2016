@@ -9,7 +9,7 @@ package wargame;
 import java.awt.*;
 import java.io.Serializable;
 
-public class Carte implements ICarte, Serializable,IConfig {
+public class Carte implements ICarte, Serializable{
 	
 	protected Element[][] tabElements = null;
 	protected Obstacle[] tabObstacle;
@@ -241,7 +241,7 @@ public class Carte implements ICarte, Serializable,IConfig {
 
 
     public void toutDissenerPolygone(Graphics g){
-    	Position p=new Position(p);
+    	Position p=new Position(IConfig.p);
 		Element tmps=new Element();
     	for(int i=0;i<LARGEUR_CARTE;i++){
 			if(i%2==0) {
