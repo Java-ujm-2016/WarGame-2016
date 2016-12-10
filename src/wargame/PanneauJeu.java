@@ -260,18 +260,19 @@ public class PanneauJeu extends JPanel {
 					int y = e.getY();
 					Position p= new Position(0,0);
 					p= p.pxtoHex(x,y);
-
-					if(crt.getElement(p) != null){
-						if (crt.getElement(p) instanceof Soldat){
-							statuBar.setMessage(((Soldat)crt.getElement(p)).toString());
-							System.out.println(((Soldat)crt.getElement(p)).toString());
-						}	
-						else
-							statuBar.setMessage(crt.getElement(p).toString());
+					try {
+						if (crt.getElement(p) != null) {
+							if (crt.getElement(p) instanceof Soldat) {
+								statuBar.setMessage(((Soldat) crt.getElement(p)).toString());
+								System.out.println(((Soldat) crt.getElement(p)).toString());
+							} else
+								statuBar.setMessage(crt.getElement(p).toString());
+						} else
+							statuBar.setMessage(" case vide " + p.toString());
+						repaint();
+					}catch (Exception e1){
+						return;
 					}
-					else
-						statuBar.setMessage(" case vide " + p.toString());
-					repaint();
 				}
 			});
 			

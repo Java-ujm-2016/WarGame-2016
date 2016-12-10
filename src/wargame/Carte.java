@@ -9,7 +9,7 @@ package wargame;
 import java.awt.*;
 import java.io.Serializable;
 
-public class Carte implements ICarte, Serializable {
+public class Carte implements ICarte, Serializable,IConfig {
 	
 	protected Element[][] tabElements = null;
 	protected Obstacle[] tabObstacle;
@@ -31,7 +31,7 @@ public class Carte implements ICarte, Serializable {
 	
     
 	public Carte(){
-		tabElements=new Element[IConfig.LARGEUR_CARTE][IConfig.HAUTEUR_CARTE];
+		tabElements=new Element[LARGEUR_CARTE][HAUTEUR_CARTE];
 		viderTabElement();
         createObstacle();
         createMonstre();
@@ -48,7 +48,7 @@ public class Carte implements ICarte, Serializable {
 	* @return tabElement[p.getX()][p.getY()] l'element se trouve dans la Position entré
 	* */
 	public Element getElement(Position pos){
-		if( pos.getX()<0 || pos.getX()>=IConfig.LARGEUR_CARTE || pos.getY()<0 || pos.getY()>=IConfig.HAUTEUR_CARTE )
+		if( pos.getX()<0 || pos.getX()>=LARGEUR_CARTE || pos.getY()<0 || pos.getY()>=HAUTEUR_CARTE )
 			throw new IndexOutOfBoundsException();
 		else
 		 return tabElements[pos.getX()][pos.getY()];
@@ -56,15 +56,15 @@ public class Carte implements ICarte, Serializable {
 
 	public Position trouvePositionVide(){
 		// Trouve aléatoirement une position vide sur la carte
-		int x= (int) (Math.random() * IConfig.LARGEUR_CARTE);
-		int y= (int) (Math.random() * IConfig.HAUTEUR_CARTE);
+		int x= (int) (Math.random() * LARGEUR_CARTE);
+		int y= (int) (Math.random() * HAUTEUR_CARTE);
 		int count=1;
-		while (tabElements[x][y]!=null && count<= (IConfig.HAUTEUR_CARTE*IConfig.LARGEUR_CARTE)){
-			x= (int) (Math.random() * IConfig.LARGEUR_CARTE);
-			y= (int) (Math.random() * IConfig.HAUTEUR_CARTE);
+		while (tabElements[x][y]!=null && count<= (HAUTEUR_CARTE*LARGEUR_CARTE)){
+			x= (int) (Math.random() * LARGEUR_CARTE);
+			y= (int) (Math.random() * HAUTEUR_CARTE);
 			count++;
 		}
-		if(count<= (IConfig.HAUTEUR_CARTE*IConfig.LARGEUR_CARTE))
+		if(count<= (HAUTEUR_CARTE*LARGEUR_CARTE))
 			return (new Position(x, y));
 		else return null;
 	}
@@ -147,21 +147,21 @@ public class Carte implements ICarte, Serializable {
 	/**
 	 * */
 	public void toutDessiner(Graphics g){
-		for(int i=0;i<IConfig.LARGEUR_CARTE;i++)
-            for(int j=0; j< IConfig.HAUTEUR_CARTE;j++) {
+		for(int i=0;i<LARGEUR_CARTE;i++)
+            for(int j=0; j< HAUTEUR_CARTE;j++) {
 			if (tabElements[i][j] != null) {
                     //System.out.print(tabElements[i][j].coul + " | ");
-				tabElements[i][j].dessinerCarree(i*IConfig.NB_PIX_CASE,j*IConfig.NB_PIX_CASE,g);
-					//tabElements[i][j].seDessinerPolygone(new Position(i*(IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE/2),j*((int)(IConfig.NB_PIX_CASE* Math.sqrt(3))/2)),g);
+				tabElements[i][j].dessinerCarree(i*NB_PIX_CASE,j*NB_PIX_CASE,g);
+					//tabElements[i][j].seDessinerPolygone(new Position(i*(NB_PIX_CASE+NB_PIX_CASE/2),j*((int)(NB_PIX_CASE* Math.sqrt(3))/2)),g);
 			}else{
 
-				g.setColor(IConfig.COULEUR_TEXTE);
+				g.setColor(COULEUR_TEXTE);
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setStroke(new BasicStroke(2));
-				g.drawRect(i*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, j*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);
-                g.setColor(IConfig.COULEUR_INCONNU);
-                g.fillRect(i*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, j*IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);
-                	//tabElements[i][j].seDessinerPolygone(new Position(i*(IConfig.NB_PIX_CASE+IConfig.NB_PIX_CASE/2),j*((int)(IConfig.NB_PIX_CASE* Math.sqrt(3))/2)),g);
+				g.drawRect(i*NB_PIX_CASE+NB_PIX_CASE, j*NB_PIX_CASE+NB_PIX_CASE, NB_PIX_CASE,NB_PIX_CASE);
+                g.setColor(COULEUR_INCONNU);
+                g.fillRect(i*NB_PIX_CASE+NB_PIX_CASE, j*NB_PIX_CASE+NB_PIX_CASE, NB_PIX_CASE,NB_PIX_CASE);
+                	//tabElements[i][j].seDessinerPolygone(new Position(i*(NB_PIX_CASE+NB_PIX_CASE/2),j*((int)(NB_PIX_CASE* Math.sqrt(3))/2)),g);
             }
 		}
 	}
@@ -173,11 +173,11 @@ public class Carte implements ICarte, Serializable {
 	*
 	* */
 	public void viderTabElement(){
-		for(int i=0;i<IConfig.LARGEUR_CARTE;i++)
-			for (int j=0;j<IConfig.HAUTEUR_CARTE;j++) {
+		for(int i=0;i<LARGEUR_CARTE;i++)
+			for (int j=0;j<HAUTEUR_CARTE;j++) {
                 this.tabElements[i][j] = null;
 
-                //this.tabElements[i][j].coul=IConfig.COULEUR_VIDE;
+                //this.tabElements[i][j].coul=COULEUR_VIDE;
             }
 		}
 
@@ -188,7 +188,7 @@ public class Carte implements ICarte, Serializable {
     *
     * */
 	public void createObstacle(){
-		tabObstacle =new Obstacle[IConfig.NB_OBSTACLES];
+		tabObstacle =new Obstacle[NB_OBSTACLES];
 		for(int i=0;i<tabObstacle.length;i++)
 			tabObstacle[i]= new Obstacle(trouvePositionVide());
 
@@ -205,8 +205,8 @@ public class Carte implements ICarte, Serializable {
     * et Stocker leur positions dans Tableau d'elements
     * */
 	public void createMonstre(){
-        tabMonstre =new Monstre[IConfig.NB_MONSTRES];
-        ArmeeMonstre= new Joueur[IConfig.NB_MONSTRES];
+        tabMonstre =new Monstre[NB_MONSTRES];
+        ArmeeMonstre= new Joueur[NB_MONSTRES];
         for(int i=0;i<tabMonstre.length;i++) {
             tabMonstre[i] = new Monstre(ISoldat.TypesM.getTypeMAlea(), i+1 , trouvePositionVide());
             //System.out.println(tabMonstre[i]);
@@ -225,8 +225,8 @@ public class Carte implements ICarte, Serializable {
     *
     * */
 	public void createHeros(){
-        tabHeros =new Heros[IConfig.NB_HEROS];
-        ArmeeHeros = new Joueur[IConfig.NB_HEROS];
+        tabHeros =new Heros[NB_HEROS];
+        ArmeeHeros = new Joueur[NB_HEROS];
         for(int i=0;i<tabHeros.length;i++) {
             tabHeros[i] = new Heros(ISoldat.TypesH.getTypeHAlea(), i + 1, trouvePositionVide());
             //System.out.println(tabHeros[i]);
@@ -241,27 +241,27 @@ public class Carte implements ICarte, Serializable {
 
 
     public void toutDissenerPolygone(Graphics g){
-    	Position p=new Position(IConfig.p);
+    	Position p=new Position(p);
 		Element tmps=new Element();
-    	for(int i=0;i<IConfig.LARGEUR_CARTE;i++){
+    	for(int i=0;i<LARGEUR_CARTE;i++){
 			if(i%2==0) {
-				for (int j = 0; j < IConfig.HAUTEUR_CARTE; j++){
+				for (int j = 0; j < HAUTEUR_CARTE; j++){
 					if (tabElements[i][j] != null) {
-						tabElements[i][j].seDessinerPolygone(new Position((int) (p.getX() + (i * 1.5 * IConfig.NB_PIX_CASE)),
-								(int) (p.getY() + (j * (2*IConfig.NB_PIX_CASE * Math.sqrt(3) / 2)))), g);
+						tabElements[i][j].seDessinerPolygone(new Position((int) (p.getX() + (i * 1.5 * NB_PIX_CASE)),
+								(int) (p.getY() + (j * (2*NB_PIX_CASE * Math.sqrt(3) / 2)))), g);
 					}else{
-						tmps.seDessinerPolygone(new Position((int) (p.getX() + (i * 1.5 * IConfig.NB_PIX_CASE)),
-								(int) (p.getY()+ (j * (2*IConfig.NB_PIX_CASE * Math.sqrt(3) / 2)))), g);
+						tmps.seDessinerPolygone(new Position((int) (p.getX() + (i * 1.5 * NB_PIX_CASE)),
+								(int) (p.getY()+ (j * (2*NB_PIX_CASE * Math.sqrt(3) / 2)))), g);
 					}
 				}
 			}else{
-				for (int j = 0; j < IConfig.HAUTEUR_CARTE; j++)
+				for (int j = 0; j < HAUTEUR_CARTE; j++)
 					if (tabElements[i][j] != null) {
-						tabElements[i][j].seDessinerPolygone(new Position((int) (p.getX() + (i * 1.5 * IConfig.NB_PIX_CASE)),
-								(int) (p.getY() + (j * (2*IConfig.NB_PIX_CASE * Math.sqrt(3) / 2))+(IConfig.NB_PIX_CASE * Math.sqrt(3) / 2))), g);
+						tabElements[i][j].seDessinerPolygone(new Position((int) (p.getX() + (i * 1.5 * NB_PIX_CASE)),
+								(int) (p.getY() + (j * (2*NB_PIX_CASE * Math.sqrt(3) / 2))+(NB_PIX_CASE * Math.sqrt(3) / 2))), g);
 					}else{
-						tmps.seDessinerPolygone(new Position((int) (p.getX() + (i * 1.5 * IConfig.NB_PIX_CASE)),
-								(int) (p.getY() + (j * (2*IConfig.NB_PIX_CASE  * Math.sqrt(3)/2))+ (IConfig.NB_PIX_CASE * Math.sqrt(3) / 2))), g);
+						tmps.seDessinerPolygone(new Position((int) (p.getX() + (i * 1.5 * NB_PIX_CASE)),
+								(int) (p.getY() + (j * (2*NB_PIX_CASE  * Math.sqrt(3)/2))+ (NB_PIX_CASE * Math.sqrt(3) / 2))), g);
 					}
 				}
 		}
