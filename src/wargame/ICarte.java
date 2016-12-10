@@ -1,6 +1,6 @@
 package wargame;
 import java.awt.Graphics;
-public interface ICarte {
+public interface ICarte extends IConfig{
 	Element getElement(Position pos);
 	Position trouvePositionVide(); // Trouve aléatoirement une position vide sur la carte
 	Position trouvePositionVide(Position pos); // Trouve une position vide choisie
