@@ -94,14 +94,29 @@ public class Carte implements ICarte, Serializable {
 			if((( soldat instanceof Heros) && (soldat2 instanceof Monstre)) 
 				|| ((soldat instanceof Monstre) && (soldat2 instanceof Heros))){
 				
-				soldat.combat(soldat2);
+				if(soldat.combat(soldat2)){
+					mort(soldat2);
+					tabElements[pos.getX()][pos.getY()] = soldat;
+				}
+				else{
+					mort(soldat);
+				}
+				
+				return true;
 			}
+			//les 2 soldats sont du meme type pas de combat
+			else
+				return false;
 		}
+		//si la case indexée par pos n'est pas null et  contient autre chose qu'un soldat
+		//pas de deplacement
+		else
 			return false;
 	}
 	
 	public void mort(Soldat perso){
-		
+		Position p = perso.getElementPosition();
+		tabElements[p.getX()][p.getY()] = null;
 	}
 	
 	public boolean actionHeros(Position pos, Position pos2){
