@@ -185,15 +185,6 @@ public class Soldat extends Element implements ISoldat,Serializable{
 		
 		return false;
 	}
-		
-		int puisf1; /***@puisf1 puissance de frappe pour un corps à corps**/
-		int puisf2;  /***@puisf2 puissance de frappe pour un combat à distance**/
-		
-		if(((this instanceof Heros) && (soldat instanceof Monstre)) 
-				|| ((this instanceof Monstre) && (soldat instanceof Heros))){
-			
-			System.out.println("un combat est lancé");
-			/***combat corps à corps*/
 			
 			/*if(this.pos.estVoisine( soldat.pos) ){
 				puisf1=(int)(Math.random()*this.puissance); /*puissance de frappa de l'objet courant*/
@@ -222,6 +213,10 @@ public class Soldat extends Element implements ISoldat,Serializable{
 			}*/
 			
 			public void combatDistance(Soldat soldat){ /*combat à distance*/
+				
+				int puisf1; 
+				int puisf2;  
+				
 				puisf1=(int)(Math.random()*soldat.tir);
 				puisf2=(int)(Math.random()*(this.getTir()));
 				
