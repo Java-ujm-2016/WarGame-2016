@@ -169,19 +169,18 @@ public class Soldat extends Element implements ISoldat,Serializable{
 		int puisf1; /***@puisf1 puissance de frappe pour un corps à corps**/
 		int puisf2;  /***@puisf2 puissance de frappe pour un combat à distance**/
 		
-		while(ptvi > 0 || soldat.getPoints() > 0){
+		while(this.getPoints() > 0 && soldat.getPoints() > 0){
 			puisf1=(int)(Math.random()*this.puissance); /*puissance de frappa de l'objet courant*/
 			puisf2=(int)(Math.random()*(soldat.getPuissance())); /* puissance de frappe de soldat*/
 			this.frapper(puisf1, soldat);
 			
 			if (soldat.getPoints() <= 0)
-				break;
-			soldat.frapper(puisf2, this);
-			
+				return true;
+			soldat.frapper(puisf2, this);	
 		}
 		
-		if(soldat.getPoints() <= 0)
-			return true;
+		if(this.getPoints() <= 0)
+			return false;
 		
 		return false;
 	}
@@ -212,31 +211,31 @@ public class Soldat extends Element implements ISoldat,Serializable{
 				}
 			}*/
 			
-			public void combatDistance(Soldat soldat){ /*combat à distance*/
-				
-				int puisf1; 
-				int puisf2;  
-				
-				puisf1=(int)(Math.random()*soldat.tir);
-				puisf2=(int)(Math.random()*(this.getTir()));
-				
-				soldat.setPoints(soldat.getPoints()-puisf1);
-				if(soldat.getPoints()>0){ 
-					/*le premier coup est porté par soldat
-					 * d'ou le nombre sup de son nombre de vie */
-					
-					this.setPoints(ptvi-puisf2); /*pt de vie de l'objet courant diminue*/
-					if(this.getPoints()<=0){ /**point de vie de courant 
-					passe à 0 ou inférieur à 0 donc mort de l'objet courant*/
-						this.setPoints(0); /*mise à jour à ptvi=0*/
-						//mapJeu.mort(this); /*diparition de la carte du soldat
-					}
-					else{
-						soldat.setPoints(0);
-						//mapJeu.mort(this); 
-					}
-				}
+	public void combatDistance(Soldat soldat){ /*combat à distance*/
+		
+		int puisf1; 
+		int puisf2;  
+		
+		puisf1=(int)(Math.random()*soldat.tir);
+		puisf2=(int)(Math.random()*(this.getTir()));
+		
+		soldat.setPoints(soldat.getPoints()-puisf1);
+		if(soldat.getPoints()>0){ 
+			/*le premier coup est porté par soldat
+			 * d'ou le nombre sup de son nombre de vie */
+			
+			this.setPoints(ptvi-puisf2); /*pt de vie de l'objet courant diminue*/
+			if(this.getPoints()<=0){ /**point de vie de courant 
+			passe à 0 ou inférieur à 0 donc mort de l'objet courant*/
+				this.setPoints(0); /*mise à jour à ptvi=0*/
+				//mapJeu.mort(this); /*diparition de la carte du soldat
 			}
+			else{
+				soldat.setPoints(0);
+				//mapJeu.mort(this); 
+			}
+		}
+	}
 
 
 	@Override
@@ -284,7 +283,14 @@ public class Soldat extends Element implements ISoldat,Serializable{
 		
 	}
 	
-	
+	public String toString(){
+		String ch = pos.toString();
+		if (this instanceof Monstre)
+			ch += getClass().getSimpleName() +" "+ numeroSoldat + " (" + ptvi +"PV/)";
+		else
+			ch += getClass().getSimpleName() +" "+ (char) (numeroSoldat + 64) + " (" + ptvi +"PV/)";
+		return ch;
+	}
 
 	
 

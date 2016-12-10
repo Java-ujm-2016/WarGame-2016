@@ -53,7 +53,7 @@ public class PanneauJeu extends JPanel {
 		super();
 		buttonsPannel = new JPanel();
 		finTour = new JButton("Fin Tour");
-		buttonsPannel.setPreferredSize(new Dimension(200, 90));
+		buttonsPannel.setPreferredSize(new Dimension(200, 60));
 		buttonsPannel.setBackground(Color.GRAY);
 		sauv = new JButton("Sauvegarde");
 		rest = new JButton("Restaurer");
@@ -61,12 +61,12 @@ public class PanneauJeu extends JPanel {
 		label = new JLabel();
 		setLayout(new BorderLayout());
 		add(buttonsPannel, BorderLayout.NORTH);
-		finTour.setPreferredSize(new Dimension(180, 80));
+		finTour.setPreferredSize(new Dimension(180, 50));
 		//add(finTour,BorderLayout.NORTH);
 		buttonsPannel.add(finTour, BorderLayout.NORTH);
 		
-		sauv.setPreferredSize(new Dimension(180, 80));
-		rest.setPreferredSize(new Dimension(180, 80));
+		sauv.setPreferredSize(new Dimension(180, 50));
+		rest.setPreferredSize(new Dimension(180, 50));
 		buttonsPannel.add(sauv,BorderLayout.NORTH);
 		buttonsPannel.add(rest,BorderLayout.NORTH);
 
@@ -236,8 +236,10 @@ public class PanneauJeu extends JPanel {
 					int y = e.getY();
 					Position p= new Position(0,0);
 					p= p.pxtoHex(x,y);
-					if(crt.tabElements[px][py] != null){
-						if(crt.tabElements[p.getX()][p.getY()] == null){
+					if(crt.tabElements[px][py] instanceof Heros){
+						
+						crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py)));
+						/*if(crt.tabElements[p.getX()][p.getY()] == null){
 							crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py)));
 						}
 						
@@ -246,7 +248,7 @@ public class PanneauJeu extends JPanel {
 							Soldat soldat1 = (Soldat) crt.getElement(new Position(px,py));
 							Soldat soldat2 = (Soldat)crt.getElement(p);
 							soldat1.combat(soldat2);
-						}
+						}*/
 					}
 					repaint();
 				}
@@ -259,8 +261,14 @@ public class PanneauJeu extends JPanel {
 					Position p= new Position(0,0);
 					p= p.pxtoHex(x,y);
 
-					if(crt.getElement(p) != null)
-						statuBar.setMessage(crt.getElement(p).toString());
+					if(crt.getElement(p) != null){
+						if (crt.getElement(p) instanceof Soldat){
+							statuBar.setMessage(((Soldat)crt.getElement(p)).toString());
+							System.out.println(((Soldat)crt.getElement(p)).toString());
+						}	
+						else
+							statuBar.setMessage(crt.getElement(p).toString());
+					}
 					else
 						statuBar.setMessage(" case vide " + p.toString());
 					repaint();

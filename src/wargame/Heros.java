@@ -41,9 +41,9 @@ public class Heros extends Soldat {
     	return  "Type Hero : "+ tHero+", numéro : "+(numsoldat) + ", points de vie : "+ ptvi + " / points de vie max : " + POINTS_DE_VIE_MAX + ", portée : " + portee + ", puissance : "+puissance+"\nPosition "+pos+"\n";
 
     }
-	public String toString(){
+	/*public String toString(){
 		return  "Type Hero : "+ tHero+" "+pos;
-	}
+	}*/
 
 
 }

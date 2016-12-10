@@ -10,10 +10,26 @@ import java.awt.*;
 import java.io.Serializable;
 
 public class Carte implements ICarte, Serializable {
+	
 	protected Element[][] tabElements = null;
 	protected Obstacle[] tabObstacle;
     protected Heros[] tabHeros;
     protected Monstre[] tabMonstre;
+    
+    protected Joueur[] ArmeeHeros;
+    protected Joueur[] ArmeeMonstre;
+	
+    //Definition de la classe interne Joueur
+	public class Joueur{
+		Element elem;
+		boolean bool;
+		public Joueur(Element e, boolean b){
+			elem = e;
+			bool = b;
+		}
+	}
+	
+    
 	public Carte(){
 		tabElements=new Element[IConfig.LARGEUR_CARTE][IConfig.HAUTEUR_CARTE];
 		viderTabElement();
@@ -96,6 +112,8 @@ public class Carte implements ICarte, Serializable {
 				
 				if(soldat.combat(soldat2)){
 					mort(soldat2);
+					tabElements[p.getX()][p.getY()] = null;
+					soldat.seDeplace(pos);
 					tabElements[pos.getX()][pos.getY()] = soldat;
 				}
 				else{
@@ -188,9 +206,11 @@ public class Carte implements ICarte, Serializable {
     * */
 	public void createMonstre(){
         tabMonstre =new Monstre[IConfig.NB_MONSTRES];
+        ArmeeMonstre= new Joueur[IConfig.NB_MONSTRES];
         for(int i=0;i<tabMonstre.length;i++) {
             tabMonstre[i] = new Monstre(ISoldat.TypesM.getTypeMAlea(), i+1 , trouvePositionVide());
             //System.out.println(tabMonstre[i]);
+            ArmeeMonstre[i]= new Joueur(tabMonstre[i],false);
         }
 
         for(int i=0;i<tabMonstre.length;i++)
@@ -206,10 +226,11 @@ public class Carte implements ICarte, Serializable {
     * */
 	public void createHeros(){
         tabHeros =new Heros[IConfig.NB_HEROS];
+        ArmeeHeros = new Joueur[IConfig.NB_HEROS];
         for(int i=0;i<tabHeros.length;i++) {
             tabHeros[i] = new Heros(ISoldat.TypesH.getTypeHAlea(), i + 1, trouvePositionVide());
             //System.out.println(tabHeros[i]);
-
+            ArmeeHeros[i] = new Joueur(tabHeros[i], false);
         }
 
         for(int i=0;i<tabHeros.length;i++){
