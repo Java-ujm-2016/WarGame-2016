@@ -1,5 +1,10 @@
 package wargame;
 import java.io.Serializable;
+
+/**
+ * Class Position
+ * @author AYADA Ahmad
+ */
 public class Position implements IConfig, Serializable{
 	private int x, y;
 	Position(int x, int y) { this.x = x; this.y = y; }
@@ -15,13 +20,24 @@ public class Position implements IConfig, Serializable{
 	public boolean estVoisine(Position pos) {
 		return ((Math.abs(x-pos.x)<=1) && (Math.abs(y-pos.y)<=1));
 	}
-	
+
+	/**
+	 * Methode pxtoHex :
+	 * *Code Adapted
+	 * *il prendre une Position d'un pixel et le convert d'un
+	 * *point de Matrice dimenssion 2 (hexagone)
+	 * @author AYADA Ahmad
+	 * @param mx recuper de MouseLestner (e.getX())
+	 * @param my recuper de MouseLestner (e.getY())
+	 * @return Pos une point de Matrice 2Dim
+	 */
 	public Position pxtoHex(int mx, int my) {
-		 /*  SOURCE ADAPTED
+		 /**
+		  * SOURCE ADAPTED :
 		  * Helpful references:
 		  * http://www.codeproject.com/Articles/14948/Hexagonal-grid-for-games-and-other-projects-Part-1
 		  * http://weblogs.java.net/blog/malenkov/archive/2009/02/hexagonal_tile.html
-         * http://www.tonypa.pri.ee/tbw/tut25.html
+          * http://www.tonypa.pri.ee/tbw/tut25.html
 	 	  * */
 
 

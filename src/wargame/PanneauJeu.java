@@ -30,6 +30,13 @@ import java.io.Serializable;
 
 import javax.swing.*;
 
+/**
+ * CLASS PANNEAU-JEU
+ * @author AYADA Ahmad
+ * @author AKPO LAtifa
+ * @Author Nour
+ */
+
 public class PanneauJeu extends JPanel {
 	/**
 	 *Cette classe contient tous les boutton necessaire à l'utilisation 
@@ -80,7 +87,8 @@ public class PanneauJeu extends JPanel {
 		add(statuBar, BorderLayout.SOUTH);
 		setPreferredSize(new Dimension(IConfig.WIDTH, IConfig.HIGHT));
 
-		/*
+		/**
+		 *
 		 * Sauvegarde des données  ainsi que leurs restauration du jeu qui seront composés
 		 * carte, Element et Position
 		 */
@@ -255,6 +263,11 @@ public class PanneauJeu extends JPanel {
 				
 				//Au survol d'une case de la carte on affiche les infos sur 
 				//l'element qui s'y trouve
+
+				/**
+				 *
+				 * @param e
+				 */
 				public void mouseMoved(MouseEvent e) {
 					int x = e.getX();
 					int y = e.getY();
@@ -278,6 +291,10 @@ public class PanneauJeu extends JPanel {
 			
 		}
 
+		/**
+		 *
+		 * @param g
+		 */
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			//g.drawRect(100,100, IConfig.NB_PIX_CASE,IConfig.NB_PIX_CASE);

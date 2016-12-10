@@ -8,6 +8,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+/**
+ * Class Mon Menu-Bar
+ * @author AYADA Ahmad
+ * @author Nour
+ * @author AKPO Latifa
+ *
+ */
 public class MonMenu extends JMenuBar{
 	
 	

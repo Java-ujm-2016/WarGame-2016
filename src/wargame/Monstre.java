@@ -1,5 +1,10 @@
 package wargame;
 
+/**
+ * Class Monstre herete Soldat
+ * @author Akpo Latifa
+ * @author Nour
+ */
 
 public class Monstre extends Soldat {
 	TypesM tMonstre;

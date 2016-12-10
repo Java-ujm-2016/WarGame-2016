@@ -1,5 +1,12 @@
 package wargame;
 import java.awt.Color;
+
+/**
+ * Class Obstacle Herete Element
+ * @author AkPO Latifa
+ * @author Nour
+ * @author AYADA Ahmad
+ */
 public class Obstacle extends Element {
 
 	public enum TypeObstacle {
@@ -19,5 +26,11 @@ public class Obstacle extends Element {
 		this.TYPE=TypeObstacle.getObstacleAlea();
 		coul=TYPE.getCouleur();
 	}
+
+	/**
+	 * TO -STRING affichage
+	 * Type d'un obstale
+	 * @return TYPE+pos
+	 */
 	public String toString() { return ""+TYPE+" "+pos; }
 }

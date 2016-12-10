@@ -1,5 +1,7 @@
 package wargame;
-/*
+/**
+ * Class Main CLASS Principal
+ * Pour Rélance Le Jeux
  *@author AYADA Ahmad
  *
  * */
@@ -26,6 +28,11 @@ public class Main {
 				new MonFrame();
 		}});
 	}
+
+	/**
+	 *
+	 * @param size
+	 */
 	public static void setDefaultSize(int size) {
 
 		Set<Object> keySet = UIManager.getLookAndFeelDefaults().keySet();

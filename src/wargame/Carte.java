@@ -1,6 +1,6 @@
 package wargame;
 
-/*
+/**
  *@author AYADA Ahmad
  *
  * */
@@ -18,7 +18,7 @@ public class Carte implements ICarte, Serializable{
     
     protected Joueur[] ArmeeHeros;
     protected Joueur[] ArmeeMonstre;
-	
+
     //Definition de la classe interne Joueur
 	public class Joueur{
 		Element elem;
@@ -41,12 +41,14 @@ public class Carte implements ICarte, Serializable{
         System.out.println("**************************** Fin Creation *************************************");
 
 	}
-	
-	/*
-	* Methode "getElement" cherche un element dans un tableau de Dimension 2
-	* @param pos est la Position de point
-	* @return tabElement[p.getX()][p.getY()] l'element se trouve dans la Position entré
-	* */
+
+	/**
+	 *
+	 * @author AYADA Ahmad
+	 * Methode "getElement" cherche un element dans un tableau de Dimension 2
+	 * @param pos est la Position de point
+	 * @return tabElement[p.getX()][p.getY()] l'element se trouve dans la Position entré
+	 **/
 	public Element getElement(Position pos){
 		if( pos.getX()<0 || pos.getX()>=LARGEUR_CARTE || pos.getY()<0 || pos.getY()>=HAUTEUR_CARTE )
 			throw new IndexOutOfBoundsException();
@@ -54,6 +56,10 @@ public class Carte implements ICarte, Serializable{
 		 return tabElements[pos.getX()][pos.getY()];
 	}
 
+	/**
+	 * Methode Trouve Position Vide
+	 * @return P point vide dans la metrice Element
+	 */
 	public Position trouvePositionVide(){
 		// Trouve aléatoirement une position vide sur la carte
 		int x= (int) (Math.random() * LARGEUR_CARTE);
@@ -68,14 +74,23 @@ public class Carte implements ICarte, Serializable{
 			return (new Position(x, y));
 		else return null;
 	}
-	
+
+	/**
+	 * Methode Trouve Position Vide
+	 * @param pos
+	 * @return point
+	 */
 	public Position trouvePositionVide(Position pos){
 		// Trouve une position vide choisie
 		if(tabElements[pos.getX()][pos.getY()]!=null)
 			return (new Position(pos));
 		else return null;
 	}
-	
+
+	/**
+	 * Trouve Heros ALéatoirment (sans parmétre)
+	 * @return hero de tabHeros
+	 */
 	// aléatoirement parmi les 8 positions adjacentes de pos Trouve aléatoirement un héros sur la carte
 	public Heros trouveHeros(){
 		int num=(int)Math.random() * tabHeros.length;
@@ -84,15 +99,26 @@ public class Carte implements ICarte, Serializable{
 		else
 			return null;
 	}
-	
+
+	/**
+	 * Trouve Heros ALéatoirment (sans parmétre)
+	 * @param pos
+	 * @return
+	 */
 	//Trouve un héros choisi aléatoirement parmi les 8 positions adjacentes de pos
+
 	public Heros trouveHeros(Position pos){
 		if (tabElements[pos.getX()][pos.getY()] instanceof  Heros)
 			return((Heros) tabElements[pos.getX()][pos.getY()]);
 		else return null;
 	}
-	
-	//
+
+	/**
+	 * Methode qui fait deplace soldat dans La matrice d'elements[][]
+	 * @param pos
+	 * @param soldat
+	 * @return true/false si réussi ou pas à le deplacer
+	 */
 	public boolean deplaceSoldat(Position pos, Soldat soldat){
 		Position p = soldat.getElementPosition();
 		if(tabElements[pos.getX()][pos.getY()] == null){
@@ -131,7 +157,11 @@ public class Carte implements ICarte, Serializable{
 		else
 			return false;
 	}
-	
+
+	/**
+	 * Methode Mort faire déspariter un soldat où cas il perdre ses poin de vie
+	 * @param perso parametre de type soldat (Hero ou Monstre)
+	 */
 	public void mort(Soldat perso){
 		Position p = perso.getElementPosition();
 		tabElements[p.getX()][p.getY()] = null;
@@ -144,8 +174,13 @@ public class Carte implements ICarte, Serializable{
 	public void jouerSoldats(PanneauJeu pj){
 		
 	}
+
 	/**
-	 * */
+	 * Methode Tous Dessiner, une matrice
+	 * Forme carré a dessiner (version 1)
+	 * d'element[x][y] (Heros,soldat,obstacle)
+	 * @param g
+	 */
 	public void toutDessiner(Graphics g){
 		for(int i=0;i<LARGEUR_CARTE;i++)
             for(int j=0; j< HAUTEUR_CARTE;j++) {
@@ -167,12 +202,13 @@ public class Carte implements ICarte, Serializable{
 	}
 
 	/**
+	* @author AYADA Ahmad
 	* Methode viderTabElement()
 	* Initialisation de Table Des Elements
 	* mis chaque cellule en null
 	*
 	* */
-	public void viderTabElement(){
+    protected void viderTabElement(){
 		for(int i=0;i<LARGEUR_CARTE;i++)
 			for (int j=0;j<HAUTEUR_CARTE;j++) {
                 this.tabElements[i][j] = null;
@@ -182,6 +218,7 @@ public class Carte implements ICarte, Serializable{
 		}
 
 	/**
+	* @author AYADA Ahmad
     * Methode CreateObstacle()
     * Générate un tableau (1 dimenssion) des Obstacle
     * et stocker leurs positions dans Tableau d'element
@@ -200,6 +237,7 @@ public class Carte implements ICarte, Serializable{
 	}
 
     /**
+	* @author AYADA Ahmad
     * Methode CreateMontre()
     * Générate un tableau (1 dimenssion) de Monstre
     * et Stocker leur positions dans Tableau d'elements
@@ -219,6 +257,7 @@ public class Carte implements ICarte, Serializable{
 
 
 	/**
+	* @author AYADA Ahmad
     * Methode CreateHeros()
     * Générate un tableau (1 dimenssion) des Heros
     * et stocker leurs positions dans Tableau d'element
@@ -240,7 +279,15 @@ public class Carte implements ICarte, Serializable{
     }
 
 
-    public void toutDissenerPolygone(Graphics g){
+
+    /**
+	 * Methode Tous Dessiner (version 2)
+	 * Dessine Un Matrice de Deux dimension
+	 * Forme Hexagone
+	 * @author AYADA Ahmad
+	 * @param g
+     * */
+	public void toutDissenerPolygone(Graphics g){
     	Position p=new Position(IConfig.p);
 		Element tmps=new Element();
     	for(int i=0;i<LARGEUR_CARTE;i++){
@@ -267,34 +314,71 @@ public class Carte implements ICarte, Serializable{
 		}
 	}
 
+	/**
+	 * Getter de Matrice D'Element dimenssion 2
+	 *
+	 * @return Matrice d'element Dimenssion 2
+	 */
 	public Element[][] getTabElements() {
 		return tabElements;
 	}
+	/**
+	 * Getter d'un Tableau Des Obstacle dimenssion 1
+	 *
+	 * @return Matrice d'Obstacles Dimenssion 1
+	 */
 
 	public Obstacle[] getTabObstacle() {
 		return tabObstacle;
 	}
+	/**
+	 * Getter d'un Tableau Des Heros dimenssion 1
+	 *
+	 * @return Matrice des Heros Dimenssion 1
+	 */
 
 	public Heros[] getTabHeros() {
 		return tabHeros;
 	}
-
+	/**
+	 * Getter d'un Tableau Des Monstre dimenssion 1
+	 * recuprer un Tableau
+	 * @return Tableu des Monsters Dimenssion 1
+	 */
 	public Monstre[] getTabMonstre() {
 		return tabMonstre;
 	}
-
+	/**
+	 * Methode getTabElements dimenssion 2
+	 * *Recuper Matrice d'elemente
+	 *
+	 * @return Matric d'elements
+	 */
 	public void setTabElements(Element[][] tabElements) {
 		this.tabElements = tabElements;
 	}
-
+	/**
+	 * Methode setTabElements dimenssion 2
+	 * Modifier les element de cette matrice
+	 *
+	 * @return Tableau des Heros Dimenssion 1
+	 */
 	public void setTabObstacle(Obstacle[] tabObstacle) {
 		this.tabObstacle = tabObstacle;
 	}
 
+	/**
+	 *
+	 * @param tabHeros
+	 */
 	public void setTabHeros(Heros[] tabHeros) {
 		this.tabHeros = tabHeros;
 	}
 
+	/**
+	 *
+	 * @param tabMonstre
+	 */
 	public void setTabMonstre(Monstre[] tabMonstre) {
 		this.tabMonstre = tabMonstre;
 	}
