@@ -26,14 +26,14 @@ public class Position implements IConfig, Serializable{
 
 
 
-			int h= (int) ( IConfig.NB_PIX_CASE * Math.sqrt(3));	// height. Distance between centres of two adjacent hexes. Distance between two opposite sides in a hex.
-			int r= (int) (IConfig.NB_PIX_CASE * Math.sqrt(3)/2);	// radius of inscribed circle (centre to middle of each side). r= h/2
-			int s= IConfig.NB_PIX_CASE;	// length of one side
+			int h= (int) ( NB_PIX_CASE * Math.sqrt(3));	// height. Distance between centres of two adjacent hexes. Distance between two opposite sides in a hex.
+			int r= (int) (NB_PIX_CASE * Math.sqrt(3)/2);	// radius of inscribed circle (centre to middle of each side). r= h/2
+			int s= NB_PIX_CASE;	// length of one side
 			int t= (int) (r / 1.73205);	// short side of 30o triangle outside of each hex
 
 			Position p = new Position(-1, -1);
-			mx -= (IConfig.BORDERS+10);
-			my -= (int)(IConfig.BORDERS);
+			mx -= (BORDERS+10);
+			my -= (int)(BORDERS);
 
 			int x = (int) (mx / (s+t)); //this gives a quick value for x. It works only on odd cols and doesn't handle the triangle sections. It assumes that the hexagon is a rectangle with width s+t (=1.5*s).
 			int y = (int) ((my - (x%2)*r)/h); //this gives the row easily. It needs to be offset by h/2 (=r)if it is in an even column
