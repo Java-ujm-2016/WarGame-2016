@@ -85,7 +85,18 @@ public class Carte implements ICarte, Serializable {
 			tabElements[pos.getX()][pos.getY()] = soldat;
 			return true;
 		}
-		else
+		//si la case indexée par pos n'est pas null et contient un soldat
+		else if(tabElements[pos.getX()][pos.getY()] instanceof Soldat){
+			
+			Soldat soldat2 = (Soldat)tabElements[pos.getX()][pos.getY()];
+			
+			//si les deux soldat sont de type different (Heros vs Monstre || Monstre vs Heros)
+			if((( soldat instanceof Heros) && (soldat2 instanceof Monstre)) 
+				|| ((soldat instanceof Monstre) && (soldat2 instanceof Heros))){
+				
+				soldat.combat(soldat2);
+			}
+		}
 			return false;
 	}
 	
