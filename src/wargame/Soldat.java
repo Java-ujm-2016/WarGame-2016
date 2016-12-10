@@ -157,9 +157,34 @@ public class Soldat extends Element implements ISoldat,Serializable{
  * entre un hero et un monstre
  * @param soldat
  */
+	//le soldat courant frappe un adversaire avec une puissance donnée
+	public void frapper(int puis, Soldat soldat){
+		soldat.setPoints(soldat.getPoints() - puis);
+	}
+	
 	@Override
-	public void combat(Soldat soldat) {
+	public boolean combat(Soldat soldat) {
 		// TODO Auto-generated method stub
+		
+		int puisf1; /***@puisf1 puissance de frappe pour un corps à corps**/
+		int puisf2;  /***@puisf2 puissance de frappe pour un combat à distance**/
+		
+		while(ptvi > 0 || soldat.getPoints() > 0){
+			puisf1=(int)(Math.random()*this.puissance); /*puissance de frappa de l'objet courant*/
+			puisf2=(int)(Math.random()*(soldat.getPuissance())); /* puissance de frappe de soldat*/
+			this.frapper(puisf1, soldat);
+			
+			if (soldat.getPoints() <= 0)
+				break;
+			soldat.frapper(puisf2, this);
+			
+		}
+		
+		if(soldat.getPoints() <= 0)
+			return true;
+		
+		return false;
+	}
 		
 		int puisf1; /***@puisf1 puissance de frappe pour un corps à corps**/
 		int puisf2;  /***@puisf2 puissance de frappe pour un combat à distance**/
@@ -170,32 +195,33 @@ public class Soldat extends Element implements ISoldat,Serializable{
 			System.out.println("un combat est lancé");
 			/***combat corps à corps*/
 			
-			if(this.pos.estVoisine( soldat.pos) ){
+			/*if(this.pos.estVoisine( soldat.pos) ){
 				puisf1=(int)(Math.random()*this.puissance); /*puissance de frappa de l'objet courant*/
-				puisf2=(int)(Math.random()*(soldat.getPuissance())); /* puissance de frappe de soldat*/
+				//puisf2=(int)(Math.random()*(soldat.getPuissance())); /* puissance de frappe de soldat*/
 				
 				/*le premier coup est porté par l'objet courant donc soldat perd
 				 * un nombre de point de vie équiv alent à la puissance de frappe de this
 				 */
-				soldat.setPoints(soldat.getPoints()-puisf1);
-				if(soldat.getPoints()>0){ 
+				//soldat.setPoints(soldat.getPoints()-puisf1);
+				//if(soldat.getPoints()>0){ 
 					/*le premier coup est porté par soldat
 					 * d'ou le nombre sup de son nombre de vie
 					 * */
 					
-					this.setPoints(ptvi-puisf2); /*pt de vie de l'objet courant diminue*/
-					if(this.getPoints()<=0){ /**point de vie de courant 
-					passe à 0 ou inférieur à 0 donc mort de l'objet courant*/
-						this.setPoints(0); /*mise à jour à ptvi=0*/
+					//this.setPoints(ptvi-puisf2); /*pt de vie de l'objet courant diminue*/
+					//if(this.getPoints()<=0){ /**point de vie de courant 
+					//passe à 0 ou inférieur à 0 donc mort de l'objet courant*/
+						//this.setPoints(0); /*mise à jour à ptvi=0*/
 						//mapJeu.mort(this); /*diparition de la carte du soldat
-					}
+					/*}
 					else{
 						soldat.setPoints(0);
 						//mapJeu.mort(this); 
 					}
 				}
-			}
-			else { /*combat à distance*/
+			}*/
+			
+			public void combatDistance(Soldat soldat){ /*combat à distance*/
 				puisf1=(int)(Math.random()*soldat.tir);
 				puisf2=(int)(Math.random()*(this.getTir()));
 				
@@ -216,8 +242,6 @@ public class Soldat extends Element implements ISoldat,Serializable{
 					}
 				}
 			}
-		}
-	}
 
 
 	@Override
