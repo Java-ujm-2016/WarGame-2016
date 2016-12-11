@@ -57,9 +57,9 @@ public class Heros extends Soldat {
 	/**
 	 *
 	 */
-	/*public String toString(){
-		return  "Type Hero : "+ tHero+" "+pos;
-	}*/
+	public String toString(){
+		return  "Type Hero : "+ tHero+" "+super.toString();
+	}
 
 
 }
