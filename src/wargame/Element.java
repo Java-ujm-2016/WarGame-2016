@@ -1,9 +1,8 @@
 package wargame;
-/*
- *
+/**
  * Class Elment
  * Le Classe de création des Element +
-  * plus leur form (Carré ou Hexagone)
+ * plus leur form (Carré ou Hexagone)
  * @author AYADA Ahmad
  * @see class IConfig
  * */
@@ -18,12 +17,13 @@ public  class Element implements IConfig, Serializable{
 		return this.pos;
 	}
 
-	/*
+	/**
 	* Methode seDessinerCaree
 	* il s'agit a dessiner un
+	 * @author AYADA Ahmad
 	* @param x le point x où l'angle haut de carré
 	* @param y le point y où l'angle haut de carré
-	* @ g Graphics
+	* @param g Graphics
 	* */
 
 
@@ -41,11 +41,12 @@ public  class Element implements IConfig, Serializable{
 
 	}
 
-	/*
+	/**
+	* @author AYADA Ahmad
 	* Methode seDessinerPolygone
 	* il s'agit a dessiner un Polygone Regulier
 	* @param centre Position de point centre de Polygone
-	* @ g Graphics
+	* @param g Graphics
 	* */
 	public void seDessinerPolygone(Position centre,Graphics g) {
 		Position[] tab = new Position[6];

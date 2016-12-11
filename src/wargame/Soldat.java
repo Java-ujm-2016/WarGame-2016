@@ -3,6 +3,9 @@ package wargame;
 import java.awt.Graphics;
 import java.io.Serializable;
 
+/**
+ * @author Akpo Latifa
+ */
 public class Soldat extends Element implements ISoldat,Serializable{
 	
 
@@ -18,21 +21,22 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	 
 	
 	
-	/*le constructeur soldat avec les différents parametres
+	/**
+	 * le constructeur soldat avec les différents parametres
+	 * @author AKPO Latifa
 	 * 
 	 * 
 	 * @param pointv qui retourne les points de vi d'un soldat donnée
-	 * @param portée retourne la portée d'un soldat c'est à dire sa distance par rapport à un autre soldat
-	 * @param puissance retourne la puissance de frappe d'un soladat pour  un corps à corps
-	 * @param tir retourne la puissance de tir d'un soldat pour un combat a distance
-	 * @param numsoldat permet de récupérer le numéro associé à un soldat
-	 * @param soldatpos renvoie la position d'un soladat qui est récupéré dans la classe Element
+	 * @param porte retourne la portée d'un soldat c'est à dire sa distance par rapport à un autre soldat
+	 * @param puissancef retourne la puissance de frappe d'un soladat pour  un corps à corps
+	 * @param puissancet retourne la puissance de tir d'un soldat pour un combat a distance
+	 * @param numerosoldat permet de récupérer le numéro associé à un soldat
+	 * @param posSoldat renvoie la position d'un soladat qui est récupéré dans la classe Element
 	 * 
 	 */
 	
 	
-	
-	public Soldat(int pointv, int porte, int puissancef, int puissancet, int numerosoldat, Position posSoldat){
+		public Soldat(int pointv, int porte, int puissancef, int puissancet, int numerosoldat, Position posSoldat){
 		super();
 		//super(posSoldat);
 		this.POINTS_DE_VIE_MAX=pointv;
@@ -55,7 +59,8 @@ public class Soldat extends Element implements ISoldat,Serializable{
 		return this.ptvi;
 	}
 
-/*savoir si un joueur a déja joué
+/**
+ *savoir si un joueur a déja joué
  * (non-Javadoc)
  * @see wargame.ISoldat#getTour()
  * @return djoue
@@ -66,30 +71,37 @@ public class Soldat extends Element implements ISoldat,Serializable{
 		return this.djoue;
 	}
 
-
+	/**
+	 *
+	 * @return
+	 */
 	@Override
 	public int getPortee() {
 		// TODO Auto-generated method stub
 		return this.portee;
 	}
 	
-	/*
+	/**
 	 * accesseurs puissance de frappe si corps à corps
-	 * @param puissance
+	 * @return puissance
 	 */
 	public int getPuissance(){
 		return this.puissance;
 	}
 	
-	/*
+	/**
 	 * accesseurs puissance de tir si combat à distance
-	 * @param tir
+	 * @return  tir
 	 */
 	
 	public int getTir(){
 		return this.tir;
 	}
-	
+
+	/**
+	 *
+	 * @return numsoldat
+	 */
 	public int getNumeroSoldat(){
 		return this.numsoldat;
 	}
@@ -111,7 +123,8 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	}
 	
 	
-	 /*mutateur permettant de savoir si un joueur a deja joué un tour de jeu ou pas
+	 /**
+	  * mutateur permettant de savoir si un joueur a deja joué un tour de jeu ou pas
 	  * 
 	  * @param tour
 	  */
@@ -124,7 +137,7 @@ public class Soldat extends Element implements ISoldat,Serializable{
 
 	@Override
 	
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see wargame.ISoldat#joueTour(int)
 	 * cette methode permet de savoir si un joueur a déja joué par le changement de sa couleur et on se base 
@@ -132,7 +145,7 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	 * la couleur de case de base d'un hero est rouge si ce dernier à deja joué sa case devient rose
 	 * si tour =1 alors joueur deja joué sinon pas encore et case prend la couleur rose
 	 */
-	/*
+	 /**
 	 * (non-Javadoc)
 	 * @see wargame.ISoldat#joueTour(int)
 	 * casecolor est défini dans la classe Element
@@ -157,7 +170,7 @@ public class Soldat extends Element implements ISoldat,Serializable{
 			ptvi = POINTS_DE_VIE_MAX;
 	}
 
-/*
+/**
  * (non-Javadoc)
  * @see wargame.ISoldat#combat(wargame.Soldat)
  * cette méthode permet d'implémenter le combat entre deux soldats à savoir entre
@@ -228,11 +241,12 @@ public class Soldat extends Element implements ISoldat,Serializable{
 		
 		soldat.setPoints(soldat.getPoints()-puisf1);
 		if(soldat.getPoints()>0){ 
-			/*le premier coup est porté par soldat
+			/**
+			 * le premier coup est porté par soldat
 			 * d'ou le nombre sup de son nombre de vie */
 			
 			this.setPoints(ptvi-puisf2); /*pt de vie de l'objet courant diminue*/
-			if(this.getPoints()<=0){ /**point de vie de courant 
+			if(this.getPoints()<=0){ /**point de vie de courant
 			passe à 0 ou inférieur à 0 donc mort de l'objet courant*/
 				this.setPoints(0); /*mise à jour à ptvi=0*/
 				//mapJeu.mort(this); /*diparition de la carte du soldat
@@ -247,7 +261,7 @@ public class Soldat extends Element implements ISoldat,Serializable{
 
 	@Override
 	
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see wargame.ISoldat#seDeplace(wargame.Position)
 	 * méthode pour implémenter le déplacement d'un soldat sur la carte
@@ -258,10 +272,14 @@ public class Soldat extends Element implements ISoldat,Serializable{
 		this.pos = newPos;
 	}
 	
-	/*
+	/**
+	 *
 	 * Dessin des soldat heros, soldate ne fonction des dimensions
 	 * et pixels des cases de la carte pour ne pas avoir de débordement
 	 * des soldats sur la carte
+	 * @param g
+	 * @param largeur
+	 * @param hauteur
 	 */
 	
 	public void seDessiner(Graphics g,int largeur,int hauteur){
@@ -278,7 +296,7 @@ public class Soldat extends Element implements ISoldat,Serializable{
 
     	}
     	
-    	/*
+    	/**
     	 * si pas hero alors monstre donc idem de couleur hero en couleurs monstre
     	 * et remplissage de la case
     	 */
@@ -289,15 +307,20 @@ public class Soldat extends Element implements ISoldat,Serializable{
     	}	
 		
 	}
-	
-	public String toString(){
+
+	/**
+	 *
+	 * @return
+	 */
+public String toString(){
 		String ch = pos.toString();
 		if (this instanceof Monstre)
-			ch += getClass().getSimpleName() +" "+ numeroSoldat + " (" + ptvi +"PV/" + POINTS_DE_VIE_MAX+")";
+			ch +=  numeroSoldat + " (" + ptvi +"PV/)";
 		else
-			ch += getClass().getSimpleName() +" "+ (char) (numeroSoldat + 64) + " (" + ptvi +"PV/"+ POINTS_DE_VIE_MAX+")";
+			ch +=  (char) (numeroSoldat + 64) + " (" + ptvi +"PV/)";
 		return ch;
 	}
+
 
 	
 
