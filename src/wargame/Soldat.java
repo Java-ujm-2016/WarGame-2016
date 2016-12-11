@@ -308,9 +308,9 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	public String toString(){
 		String ch = pos.toString();
 		if (this instanceof Monstre)
-			ch += getClass().getSimpleName() +" "+ numeroSoldat + " (" + ptvi +"PV/)";
+			ch +=  numeroSoldat + " (" + ptvi +"PV/)";
 		else
-			ch += getClass().getSimpleName() +" "+ (char) (numeroSoldat + 64) + " (" + ptvi +"PV/)";
+			ch +=  (char) (numeroSoldat + 64) + " (" + ptvi +"PV/)";
 		return ch;
 	}
 
