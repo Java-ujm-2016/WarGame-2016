@@ -98,4 +98,7 @@ public  class Element implements IConfig, Serializable{
 
 		}
 	}
+	public void setCouleur(Color col){
+		coul = col;
+	}
 }

@@ -11,22 +11,18 @@ import java.awt.event.ActionListener;
  *
  * */
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
 
@@ -51,9 +47,11 @@ public class PanneauJeu extends JPanel {
 	JButton finTour;
 	JPanel buttonsPannel;
 	StatusBar statuBar;
+	//boolean tour = true;
 	
 	JButton sauv;
 	JButton rest;
+	
 	
 
 	public PanneauJeu() {
@@ -86,17 +84,48 @@ public class PanneauJeu extends JPanel {
 		statuBar = new StatusBar();
 		add(statuBar, BorderLayout.SOUTH);
 		setPreferredSize(new Dimension(IConfig.WIDTH, IConfig.HIGHT));
+		
+		//Action du bouton fin tour
+		
+		finTour.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				crt.finTour();
+				for(int i =0; i < crt.ArmeeMonstre.length; i++){
+					//System.out.println("Action du monstre N°"+i);
+					if (crt.ArmeeMonstre[i] != null){
+						crt.tourMonstre((Monstre) crt.ArmeeMonstre[i].getSoldat());
+						zoneDessin.repaint();
+						/*try {
+							TimeUnit.SECONDS.sleep(1);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}*/
+					}
+				}
+				System.out.println("Fin de tour des Monstre , à vous de jouer");
+				
+				
+				if(crt.nubr_Monstre <=0){
+					JOptionPane.showMessageDialog(null, "Bravo mon Général !!!!! \n"
+							+ "Vous avez reussi à decimer l'armée des Monstre !!!!!","Information",JOptionPane.INFORMATION_MESSAGE);
+				}
+				else if(crt.nubr_hero<=0){
+					JOptionPane.showMessageDialog(null, "Vous perdu mon Général !!!!!\n"
+							+ "L'armée est trop forte pour vous, une prochaine fois peut-être !!!!!","Information",JOptionPane.INFORMATION_MESSAGE);
+				}
+								
+			}
+		});
 
 		/**
 		 *
 		 * Sauvegarde des données  ainsi que leurs restauration du jeu qui seront composés
 		 * carte, Element et Position
 		 */
-		/*instanciation de la carte pour son utilisation*/
+		/**********************************SAUVEGARDE RESTAURATION************************/
 		
-		//crt = new Carte();
-		
-	/*	sauv.addActionListener(new ActionListener(){
+		sauv.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent agr){
 				try {
 					FileOutputStream fichier = new FileOutputStream("wargame.ser");
@@ -120,7 +149,7 @@ public class PanneauJeu extends JPanel {
 		 * Restauration du jeu après une pause
 		 */
 		
-	/*	rest.addActionListener(new ActionListener(){
+		rest.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent agr){
 				FileInputStream fichier;
 				try {
@@ -142,11 +171,8 @@ public class PanneauJeu extends JPanel {
 					e.printStackTrace();
 				}
 			}
-		});*/
-	
-
+		});
 	}
-	
 	
 
 	class MyAdjustmentListener implements AdjustmentListener {
@@ -170,61 +196,6 @@ public class PanneauJeu extends JPanel {
 
 			crt = new Carte();
 			
-/**********************************SAUVEGARDE RESTAURATION************************/
-			
-			sauv.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent agr){
-					try {
-						FileOutputStream fichier = new FileOutputStream("wargame.ser");
-						ObjectOutputStream var = new ObjectOutputStream(fichier);
-						var.writeObject(crt);
-						var.flush();
-						var.close();
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					};
-				}
-			});
-			
-			
-			
-			/*
-			 * Restauration du jeu après une pause
-			 */
-			
-			rest.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent agr){
-					FileInputStream fichier;
-					try {
-						fichier = new FileInputStream("wargame.ser");
-						ObjectInputStream var = new ObjectInputStream(fichier);
-						Object lect = var.readObject();
-						crt= (Carte) lect;
-						var.close();
-						repaint();
-					//crt.SeDessiner();
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			});
-			
-			
-			addMouseListener(new MouseAdapter() {
-
-			});
-			
 			//A l'appui sur le bouton de la souris sur la case d'un Soldat 
 			addMouseListener(new MouseAdapter(){
 				public void mousePressed(MouseEvent e){
@@ -244,20 +215,31 @@ public class PanneauJeu extends JPanel {
 					int y = e.getY();
 					Position p= new Position(0,0);
 					p= p.pxtoHex(x,y);
+					
+					//si le joueur a la main sur la partie 
+					try{
 					if(crt.tabElements[px][py] instanceof Heros){
-						
-						crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py)));
-						/*if(crt.tabElements[p.getX()][p.getY()] == null){
-							crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py)));
-						}
-						
-						if(crt.tabElements[p.getX()][p.getY()] instanceof Soldat){
-							//System.out.println("un combat est lancé");
-							Soldat soldat1 = (Soldat) crt.getElement(new Position(px,py));
-							Soldat soldat2 = (Soldat)crt.getElement(p);
-							soldat1.combat(soldat2);
-						}*/
-					}
+						int i = crt.trouveIndice(new Position(px,py),crt.ArmeeHeros);
+
+						//si le Heros courant n'a pas encore joué dans ce tour
+						if(crt.ArmeeHeros[i] != null)
+							if (crt.ArmeeHeros[i].getEtat() == false){
+								
+								//si le Heros a reussi son action
+								if(crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py)))) {
+									//if(crt.ArmeeHeros[i] != null)
+									try {
+										crt.ArmeeHeros[i].setEtat(true);
+										//crt.tabElements[x][y].setCouleur(IConfig.COULEUR_HEROS_DEJA_JOUE);
+
+									}catch (NullPointerException zz){
+
+									}
+								}
+							}
+					}}catch (ArrayIndexOutOfBoundsException z){
+
+									   }
 					repaint();
 				}
 				
@@ -277,7 +259,7 @@ public class PanneauJeu extends JPanel {
 						if (crt.getElement(p) != null) {
 							if (crt.getElement(p) instanceof Soldat) {
 								statuBar.setMessage(((Soldat) crt.getElement(p)).toString());
-								System.out.println(((Soldat) crt.getElement(p)).toString());
+								//System.out.println(((Soldat) crt.getElement(p)).toString());
 							} else
 								statuBar.setMessage(crt.getElement(p).toString());
 						} else

@@ -17,13 +17,14 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	protected int numsoldat;/*recup numéro d'un soldat*/
 	protected int portee; /*pour récupérer la portée*/
 	
-	protected static int POINTS_DE_VIE_MAX; /*pt de vie max de dépatt d"un soldat*/
+	protected int POINTS_DE_VIE_MAX; /*pt de vie max de dépatt d"un soldat*/
 	 
 	
 	
 	/**
 	 * le constructeur soldat avec les différents parametres
 	 * @author AKPO Latifa
+	 * 
 	 * 
 	 * @param pointv qui retourne les points de vi d'un soldat donnée
 	 * @param porte retourne la portée d'un soldat c'est à dire sa distance par rapport à un autre soldat
@@ -38,6 +39,7 @@ public class Soldat extends Element implements ISoldat,Serializable{
 		public Soldat(int pointv, int porte, int puissancef, int puissancet, int numerosoldat, Position posSoldat){
 		super();
 		//super(posSoldat);
+		this.POINTS_DE_VIE_MAX=pointv;
 		this.ptvi=pointv;
 		this.portee = porte;
 		this.puissance=puissancef;
@@ -46,7 +48,7 @@ public class Soldat extends Element implements ISoldat,Serializable{
 		pos= new Position(posSoldat);
 		
 	}
-/**
+/*
  * les différents accesseurs des variables de la classe soldat
  * @return ptvi
  */
@@ -74,7 +76,6 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	 * @return
 	 */
 	@Override
-
 	public int getPortee() {
 		// TODO Auto-generated method stub
 		return this.portee;
@@ -123,7 +124,7 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	
 	
 	 /**
-	  0 *mutateur permettant de savoir si un joueur a deja joué un tour de jeu ou pas
+	  * mutateur permettant de savoir si un joueur a deja joué un tour de jeu ou pas
 	  * 
 	  * @param tour
 	  */
@@ -161,6 +162,12 @@ public class Soldat extends Element implements ISoldat,Serializable{
 		}
 		
 		
+	}
+	
+	public void repos(){
+		ptvi+=5;
+		if (ptvi > POINTS_DE_VIE_MAX)
+			ptvi = POINTS_DE_VIE_MAX;
 	}
 
 /**
@@ -305,14 +312,15 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	 *
 	 * @return
 	 */
-	public String toString(){
+public String toString(){
 		String ch = pos.toString();
 		if (this instanceof Monstre)
-			ch +=  numeroSoldat + " (" + ptvi +"PV/)";
+			ch +=  numeroSoldat + " (" + ptvi +"PV/"+POINTS_DE_VIE_MAX+")";
 		else
-			ch +=  (char) (numeroSoldat + 64) + " (" + ptvi +"PV/)";
+			ch +=  (char) (numeroSoldat + 64) + " (" + ptvi +"PV/"+POINTS_DE_VIE_MAX+")";
 		return ch;
 	}
+
 
 	
 
