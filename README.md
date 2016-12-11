@@ -13,4 +13,6 @@ AKPO _Latifa_
 >ABOUBACAR KADRI _Mahamadou Nourou_
 
 
-<center>![WarGame](/WarGAMEDiagrammeUML/diagramWargemeSimple.png)</cenrer>
+<center>
+![WarGame](https://github.com/Java-ujm-2016/WarGame-2016/blob/developer/WarGAMEDiagrammeUML/diagramWargemeSimple.png)
+</cenrer>
