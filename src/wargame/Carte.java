@@ -127,7 +127,7 @@ public class Carte implements ICarte, Serializable{
 			for (int j=0; j < IConfig.HAUTEUR_CARTE;j++){
 				if (pos.estVoisine(new Position(i,j))){
 					tab[k] = new Position(i,j);
-					System.out.println(tab[k].toString());
+					//SSystem.out.println(tab[k].toString());
 					k++;
 				}
 			}
@@ -156,7 +156,7 @@ public class Carte implements ICarte, Serializable{
 		
 			Position posi = monstre.getElementPosition();
 			
-			System.out.println("action Monstre N° "+posi.toString());
+			//blaSystem.out.println("action Monstre N° "+posi.toString());
 			
 			Position[] tab = new Position[10];
 			tab = trouvePositonAdj(posi);
@@ -183,7 +183,7 @@ public class Carte implements ICarte, Serializable{
 				else
 					((Soldat)getElement(posi)).repos();
 			}
-		System.out.println("blalalalaalaalalalalla");
+		//System.out.println("blalalalaalaalalalalla");
 	}
 
 	//Deplacement et engagement d'eventuel combat

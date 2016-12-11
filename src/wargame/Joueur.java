@@ -1,6 +1,8 @@
 package wargame;
 
-public class Joueur {
+import java.io.Serializable;
+
+public class Joueur implements Serializable{
 	protected Soldat elem;
 	protected boolean etat;
 	public Joueur(Soldat e, boolean b){

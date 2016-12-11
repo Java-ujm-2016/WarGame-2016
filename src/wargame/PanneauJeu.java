@@ -91,7 +91,7 @@ public class PanneauJeu extends JPanel {
 			public void actionPerformed(ActionEvent event){
 				crt.finTour();
 				for(int i =0; i < crt.ArmeeMonstre.length; i++){
-					System.out.println("Action du monstre N°"+i);
+					//System.out.println("Action du monstre N°"+i);
 					if (crt.ArmeeMonstre[i] != null){
 						crt.tourMonstre((Monstre) crt.ArmeeMonstre[i].getSoldat());
 						zoneDessin.repaint();
@@ -217,22 +217,29 @@ public class PanneauJeu extends JPanel {
 					p= p.pxtoHex(x,y);
 					
 					//si le joueur a la main sur la partie 
+					try{
 					if(crt.tabElements[px][py] instanceof Heros){
 						int i = crt.trouveIndice(new Position(px,py),crt.ArmeeHeros);
-						
+
 						//si le Heros courant n'a pas encore joué dans ce tour
 						if(crt.ArmeeHeros[i] != null)
 							if (crt.ArmeeHeros[i].getEtat() == false){
 								
 								//si le Heros a reussi son action
-								if(crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py)))){
+								if(crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py)))) {
 									//if(crt.ArmeeHeros[i] != null)
+									try {
 										crt.ArmeeHeros[i].setEtat(true);
-									//crt.tabElements[x][y].setCouleur(IConfig.COULEUR_HEROS_DEJA_JOUE);
+										//crt.tabElements[x][y].setCouleur(IConfig.COULEUR_HEROS_DEJA_JOUE);
+
+									}catch (NullPointerException zz){
+
+									}
 								}
-									
 							}
-					}
+					}}catch (ArrayIndexOutOfBoundsException z){
+
+									   }
 					repaint();
 				}
 				
