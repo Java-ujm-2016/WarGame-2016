@@ -11,9 +11,16 @@ test
 > AKPO _Latifa_
 >
 > ABOUBACAR KADRI _Mahamadou Nourou_
-
-![UML-Simple]:(/Diagramme UML of WarGAME/diagramWargemeSimple.png)
-
 <center>
-![WarGame](https://github.com/Java-ujm-2016/WarGame-2016/blob/developer/WarGAMEDiagrammeUML/diagramWargemeSimple.png)
-</cenrer>
+_SEE DIAGRAMME BELOW_
+
+
+![UML1](https://github.com/Java-ujm-2016/WarGame-2016/blob/master/WarGAMEDiagrammeUML/diagramWargeme.png)
+
+![UML2](https://github.com/Java-ujm-2016/WarGame-2016/blob/master/WarGAMEDiagrammeUML/diagrame_with_dep.png)
+
+![UML3](https://github.com/Java-ujm-2016/WarGame-2016/blob/master/WarGAMEDiagrammeUML/diagramSansMethode.png?raw=true)
+
+![UML4](https://github.com/Java-ujm-2016/WarGame-2016/blob/developer/WarGAMEDiagrammeUML/diagramWargemeSimple.png)
+
+</center>
