@@ -18,7 +18,8 @@ public class Carte implements ICarte, Serializable{
     
     protected Joueur[] ArmeeHeros;
     protected Joueur[] ArmeeMonstre;
-
+    int nubr_hero=NB_HEROS;
+    int nubr_Monstre=NB_MONSTRES;
     
 	public Carte(){
 		tabElements=new Element[LARGEUR_CARTE][HAUTEUR_CARTE];
@@ -141,7 +142,8 @@ public class Carte implements ICarte, Serializable{
 			if(ArmeeHeros[i]!= null){
 				if(ArmeeHeros[i].getEtat() == false){
 					p = ArmeeHeros[i].getSoldat().getElementPosition();
-					((Soldat) tabElements[p.getX()][p.getY()]).repos();
+					if(tabElements[p.getX()][p.getY()] != null)
+						((Soldat) tabElements[p.getX()][p.getY()]).repos();
 				}
 				//tabElements[p.getX()][p.getY()].setCouleur(IConfig.COULEUR_HEROS);
 				ArmeeHeros[i].setEtat(false);
@@ -207,11 +209,15 @@ public class Carte implements ICarte, Serializable{
 			tabElements[pos.getX()][pos.getY()] = soldat;
 			
 			//On met à jour de la position du soldat dans son armee
-			if (soldat instanceof Heros){
-				ArmeeHeros[trouveIndice(p,ArmeeHeros)].setSoldat(soldat);
-			}
-			else{
-				ArmeeMonstre[trouveIndice(p,ArmeeMonstre)].setSoldat(soldat);
+			try{
+				if (soldat instanceof Heros){
+					ArmeeHeros[trouveIndice(p,ArmeeHeros)].setSoldat(soldat);
+				}
+				else{
+					ArmeeMonstre[trouveIndice(p,ArmeeMonstre)].setSoldat(soldat);
+				}
+			}catch (NullPointerException e1){
+				
 			}
 			return true;
 		}
@@ -228,9 +234,11 @@ public class Carte implements ICarte, Serializable{
 					//Suprimmer le soldat mort de son armee
 					if (soldat2 instanceof Heros){
 						ArmeeHeros[trouveIndice(p,ArmeeHeros)]= null;
+						nubr_hero--;
 					}
 					else{
 						ArmeeMonstre[trouveIndice(p,ArmeeMonstre)]= null;
+						nubr_Monstre--;
 					}
 					mort(soldat2);
 					tabElements[p.getX()][p.getY()] = null;
@@ -241,9 +249,12 @@ public class Carte implements ICarte, Serializable{
 					//Suprimmer le soldat mort de son armee
 					if (soldat instanceof Heros){
 						ArmeeHeros[trouveIndice(p,ArmeeHeros)]= null;
+						nubr_hero--;
+
 					}
 					else{
 						ArmeeMonstre[trouveIndice(p,ArmeeMonstre)]= null;
+						nubr_Monstre--;
 					}
 					mort(soldat);
 				}
