@@ -11,22 +11,17 @@ import java.awt.event.ActionListener;
  *
  * */
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
@@ -97,17 +92,18 @@ public class PanneauJeu extends JPanel {
 				crt.finTour();
 				for(int i =0; i < crt.ArmeeMonstre.length; i++){
 					System.out.println("Action du monstre N°"+i);
-					if (crt.ArmeeMonstre[i] != null)
+					if (crt.ArmeeMonstre[i] != null){
 						crt.tourMonstre((Monstre) crt.ArmeeMonstre[i].getSoldat());
-					try {
-						TimeUnit.SECONDS.sleep(1);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						zoneDessin.repaint();
+						try {
+							TimeUnit.SECONDS.sleep(1);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
-					repaint();
 				}
-				//repaint();
+								
 			}
 		});
 
@@ -217,8 +213,11 @@ public class PanneauJeu extends JPanel {
 						if (crt.ArmeeHeros[i].getEtat() == false){
 							
 							//si le Heros a reussi son action
-							if(crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py))))
+							if(crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py)))){
 								crt.ArmeeHeros[i].setEtat(true);
+								//crt.tabElements[x][y].setCouleur(IConfig.COULEUR_HEROS_DEJA_JOUE);
+							}
+								
 						}
 					}
 					repaint();

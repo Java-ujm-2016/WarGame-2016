@@ -315,9 +315,9 @@ public class Soldat extends Element implements ISoldat,Serializable{
 public String toString(){
 		String ch = pos.toString();
 		if (this instanceof Monstre)
-			ch +=  numeroSoldat + " (" + ptvi +"PV/)";
+			ch +=  numeroSoldat + " (" + ptvi +"PV/"+POINTS_DE_VIE_MAX+")";
 		else
-			ch +=  (char) (numeroSoldat + 64) + " (" + ptvi +"PV/)";
+			ch +=  (char) (numeroSoldat + 64) + " (" + ptvi +"PV/"+POINTS_DE_VIE_MAX+")";
 		return ch;
 	}
 

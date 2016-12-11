@@ -143,6 +143,7 @@ public class Carte implements ICarte, Serializable{
 					p = ArmeeHeros[i].getSoldat().getElementPosition();
 					((Soldat) tabElements[p.getX()][p.getY()]).repos();
 				}
+				//tabElements[p.getX()][p.getY()].setCouleur(IConfig.COULEUR_HEROS);
 				ArmeeHeros[i].setEtat(false);
 			}
 		}
@@ -172,7 +173,7 @@ public class Carte implements ICarte, Serializable{
 			else{
 				Position alea = null;
 				while (alea == null){
-					alea = tab[(int)Math.random()*tab.length];
+					alea = tab[(int)Math.floor(Math.random()*tab.length)];
 				}
 				
 				if (getElement(alea) == null)
@@ -204,6 +205,14 @@ public class Carte implements ICarte, Serializable{
 			tabElements[p.getX()][p.getY()] = null;
 			soldat.seDeplace(pos);
 			tabElements[pos.getX()][pos.getY()] = soldat;
+			
+			//On met à jour de la position du soldat dans son armee
+			if (soldat instanceof Heros){
+				ArmeeHeros[trouveIndice(p,ArmeeHeros)].setSoldat(soldat);
+			}
+			else{
+				ArmeeMonstre[trouveIndice(p,ArmeeMonstre)].setSoldat(soldat);
+			}
 			return true;
 		}
 		//si la case indexée par pos n'est pas null et contient un soldat
