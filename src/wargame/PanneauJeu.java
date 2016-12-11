@@ -95,13 +95,24 @@ public class PanneauJeu extends JPanel {
 					if (crt.ArmeeMonstre[i] != null){
 						crt.tourMonstre((Monstre) crt.ArmeeMonstre[i].getSoldat());
 						zoneDessin.repaint();
-						try {
+						/*try {
 							TimeUnit.SECONDS.sleep(1);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-						}
+						}*/
 					}
+				}
+				System.out.println("Fin de tour des Monstre , à vous de jouer");
+				
+				
+				if(crt.nubr_Monstre <=0){
+					JOptionPane.showMessageDialog(null, "Bravo mon Général !!!!! \n"
+							+ "Vous avez reussi à decimer l'armée des Monstre !!!!!","Information",JOptionPane.INFORMATION_MESSAGE);
+				}
+				else if(crt.nubr_hero<=0){
+					JOptionPane.showMessageDialog(null, "Vous perdu mon Général !!!!!\n"
+							+ "L'armée est trop forte pour vous, une prochaine fois peut-être !!!!!","Information",JOptionPane.INFORMATION_MESSAGE);
 				}
 								
 			}
@@ -210,15 +221,17 @@ public class PanneauJeu extends JPanel {
 						int i = crt.trouveIndice(new Position(px,py),crt.ArmeeHeros);
 						
 						//si le Heros courant n'a pas encore joué dans ce tour
-						if (crt.ArmeeHeros[i].getEtat() == false){
-							
-							//si le Heros a reussi son action
-							if(crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py)))){
-								crt.ArmeeHeros[i].setEtat(true);
-								//crt.tabElements[x][y].setCouleur(IConfig.COULEUR_HEROS_DEJA_JOUE);
-							}
+						if(crt.ArmeeHeros[i] != null)
+							if (crt.ArmeeHeros[i].getEtat() == false){
 								
-						}
+								//si le Heros a reussi son action
+								if(crt.deplaceSoldat(p, (Soldat) crt.getElement(new Position(px,py)))){
+									//if(crt.ArmeeHeros[i] != null)
+										crt.ArmeeHeros[i].setEtat(true);
+									//crt.tabElements[x][y].setCouleur(IConfig.COULEUR_HEROS_DEJA_JOUE);
+								}
+									
+							}
 					}
 					repaint();
 				}
@@ -239,7 +252,7 @@ public class PanneauJeu extends JPanel {
 						if (crt.getElement(p) != null) {
 							if (crt.getElement(p) instanceof Soldat) {
 								statuBar.setMessage(((Soldat) crt.getElement(p)).toString());
-								System.out.println(((Soldat) crt.getElement(p)).toString());
+								//System.out.println(((Soldat) crt.getElement(p)).toString());
 							} else
 								statuBar.setMessage(crt.getElement(p).toString());
 						} else
