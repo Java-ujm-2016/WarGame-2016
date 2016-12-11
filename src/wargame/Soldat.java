@@ -26,11 +26,11 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	 * @author AKPO Latifa
 	 * 
 	 * @param pointv qui retourne les points de vi d'un soldat donnée
-	 * @param portée retourne la portée d'un soldat c'est à dire sa distance par rapport à un autre soldat
-	 * @param puissance retourne la puissance de frappe d'un soladat pour  un corps à corps
-	 * @param tir retourne la puissance de tir d'un soldat pour un combat a distance
-	 * @param numsoldat permet de récupérer le numéro associé à un soldat
-	 * @param soldatpos renvoie la position d'un soladat qui est récupéré dans la classe Element
+	 * @param porte retourne la portée d'un soldat c'est à dire sa distance par rapport à un autre soldat
+	 * @param puissancef retourne la puissance de frappe d'un soladat pour  un corps à corps
+	 * @param puissancet retourne la puissance de tir d'un soldat pour un combat a distance
+	 * @param numerosoldat permet de récupérer le numéro associé à un soldat
+	 * @param posSoldat renvoie la position d'un soladat qui est récupéré dans la classe Element
 	 * 
 	 */
 	
