@@ -92,12 +92,12 @@ public class PanneauJeu extends JPanel {
 					System.out.println("Action du monstre N°"+i);
 					if (crt.ArmeeMonstre[i] != null)
 						crt.tourMonstre((Monstre) crt.ArmeeMonstre[i].getSoldat());
-					/*try {
+					try {
 						TimeUnit.SECONDS.sleep(1);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}*/
+					}
 					repaint();
 				}
 				//repaint();
