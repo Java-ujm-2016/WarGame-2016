@@ -19,16 +19,6 @@ public class Carte implements ICarte, Serializable {
     protected Joueur[] ArmeeHeros;
     protected Joueur[] ArmeeMonstre;
 	
-    //Definition de la classe interne Joueur
-	public class Joueur{
-		Element elem;
-		boolean bool;
-		public Joueur(Element e, boolean b){
-			elem = e;
-			bool = b;
-		}
-	}
-	
     
 	public Carte(){
 		tabElements=new Element[IConfig.LARGEUR_CARTE][IConfig.HAUTEUR_CARTE];
@@ -78,9 +68,9 @@ public class Carte implements ICarte, Serializable {
 	
 	// aléatoirement parmi les 8 positions adjacentes de pos Trouve aléatoirement un héros sur la carte
 	public Heros trouveHeros(){
-		int num=(int)Math.random() * tabHeros.length;
-		if(tabHeros[num] != null)
-			return(tabHeros[num]);
+		int num=(int)Math.random() * ArmeeHeros.length;
+		if(ArmeeHeros[num] != null)
+			return (Heros) (ArmeeHeros[num].getSoldat());
 		else
 			return null;
 	}
@@ -92,7 +82,87 @@ public class Carte implements ICarte, Serializable {
 		else return null;
 	}
 	
-	//
+	//Touver l'indice de la case du Soldat en action dans ArmeeHeros
+	public int trouveIndice(Position pos, Joueur[] armee){
+		int i=0;
+		boolean bool = false;
+		while(i < armee.length && bool == false){
+			if (armee[i] != null)
+				if (pos.getX() == armee[i].getSoldat().getSoldatpos().getX() 
+						&& pos.getY() == armee[i].getSoldat().getSoldatpos().getY())
+					bool = true;
+			i++;
+		}
+		
+		return i-1;
+	}
+	
+	//Trouver toutes les positions adjacentes à la position donnée
+	public Position[] trouvePositonAdj(Position pos){
+		Position[] tab = new Position[10];
+		int k = 0;
+		for (int i=0; i < IConfig.LARGEUR_CARTE;i++){
+			for (int j=0; j < IConfig.HAUTEUR_CARTE;j++){
+				if (pos.estVoisine(new Position(i,j))){
+					tab[k] = new Position(i,j);
+					System.out.println(tab[k].toString());
+					k++;
+				}
+			}
+		}
+		return tab;
+	}
+	
+	//Verification et mise en repos Heros n'ayant pas joués
+	public void finTour(){
+		for(int i = 0; i < ArmeeHeros.length; i++ ){
+			Position p = null;
+			if(ArmeeHeros[i]!= null){
+				if(ArmeeHeros[i].getEtat() == false){
+					p = ArmeeHeros[i].getSoldat().getElementPosition();
+					((Soldat) tabElements[p.getX()][p.getY()]).repos();
+				}
+				ArmeeHeros[i].setEtat(false);
+			}
+		}
+	}
+	
+	//Faire jouer les Monstres
+	public void tourMonstre(Monstre monstre){
+		
+			Position posi = monstre.getElementPosition();
+			
+			System.out.println("action Monstre N° "+posi.toString());
+			
+			Position[] tab = new Position[10];
+			tab = trouvePositonAdj(posi);
+			Heros soldat=null;
+			//recherche des heros aux alentours du monstre courant
+			for(int j=0; j < tab.length; j++){
+				if(tab[j] != null && trouveHeros(tab[j]) != null)
+					soldat = trouveHeros(tab[j]);
+			}
+			//si Heros trouvé : combatre l'heros
+			if(soldat != null){
+				Position pos = soldat.getElementPosition();
+				deplaceSoldat(pos, monstre);
+			}
+			//deplacement aleatoire dans une des postions adjascentes 
+			else{
+				Position alea = null;
+				while (alea == null){
+					alea = tab[(int)Math.random()*tab.length];
+				}
+				
+				if (getElement(alea) == null)
+					deplaceSoldat(alea, monstre);
+				else
+					((Soldat)getElement(posi)).repos();
+			}
+		System.out.println("blalalalaalaalalalalla");
+	}
+
+	//Deplacement et engagement d'eventuel combat
 	public boolean deplaceSoldat(Position pos, Soldat soldat){
 		Position p = soldat.getElementPosition();
 		if(tabElements[pos.getX()][pos.getY()] == null){
@@ -111,12 +181,26 @@ public class Carte implements ICarte, Serializable {
 				|| ((soldat instanceof Monstre) && (soldat2 instanceof Heros))){
 				
 				if(soldat.combat(soldat2)){
+					//Suprimmer le soldat mort de son armee
+					if (soldat2 instanceof Heros){
+						ArmeeHeros[trouveIndice(p,ArmeeHeros)]= null;
+					}
+					else{
+						ArmeeMonstre[trouveIndice(p,ArmeeMonstre)]= null;
+					}
 					mort(soldat2);
 					tabElements[p.getX()][p.getY()] = null;
 					soldat.seDeplace(pos);
 					tabElements[pos.getX()][pos.getY()] = soldat;
 				}
 				else{
+					//Suprimmer le soldat mort de son armee
+					if (soldat instanceof Heros){
+						ArmeeHeros[trouveIndice(p,ArmeeHeros)]= null;
+					}
+					else{
+						ArmeeMonstre[trouveIndice(p,ArmeeMonstre)]= null;
+					}
 					mort(soldat);
 				}
 				
@@ -131,6 +215,7 @@ public class Carte implements ICarte, Serializable {
 		else
 			return false;
 	}
+	
 	
 	public void mort(Soldat perso){
 		Position p = perso.getElementPosition();
@@ -205,16 +290,17 @@ public class Carte implements ICarte, Serializable {
     * et Stocker leur positions dans Tableau d'elements
     * */
 	public void createMonstre(){
-        tabMonstre =new Monstre[IConfig.NB_MONSTRES];
         ArmeeMonstre= new Joueur[IConfig.NB_MONSTRES];
-        for(int i=0;i<tabMonstre.length;i++) {
-            tabMonstre[i] = new Monstre(ISoldat.TypesM.getTypeMAlea(), i+1 , trouvePositionVide());
+        for(int i=0;i<ArmeeMonstre.length;i++) {
+            //tabMonstre[i] = new Monstre(ISoldat.TypesM.getTypeMAlea(), i+1 , trouvePositionVide());
             //System.out.println(tabMonstre[i]);
-            ArmeeMonstre[i]= new Joueur(tabMonstre[i],false);
+            ArmeeMonstre[i]= new Joueur(new Monstre(ISoldat.TypesM.getTypeMAlea(), i+1 , trouvePositionVide()),false);
         }
 
-        for(int i=0;i<tabMonstre.length;i++)
-            tabElements[tabMonstre[i].getElementPosition().getX()][tabMonstre[i].getElementPosition().getY()] = tabMonstre[i];
+        for(int i=0;i<ArmeeMonstre.length;i++)
+            tabElements
+            [ArmeeMonstre[i].getSoldat().getElementPosition().getX()]
+            [ArmeeMonstre[i].getSoldat().getElementPosition().getY()] = ArmeeMonstre[i].getSoldat();
     }
 
 
@@ -225,16 +311,17 @@ public class Carte implements ICarte, Serializable {
     *
     * */
 	public void createHeros(){
-        tabHeros =new Heros[IConfig.NB_HEROS];
         ArmeeHeros = new Joueur[IConfig.NB_HEROS];
-        for(int i=0;i<tabHeros.length;i++) {
-            tabHeros[i] = new Heros(ISoldat.TypesH.getTypeHAlea(), i + 1, trouvePositionVide());
+        for(int i=0;i<ArmeeHeros.length;i++) {
+            //tabHeros[i] = new Heros(ISoldat.TypesH.getTypeHAlea(), i + 1, trouvePositionVide());
             //System.out.println(tabHeros[i]);
-            ArmeeHeros[i] = new Joueur(tabHeros[i], false);
+            ArmeeHeros[i]= new Joueur(new Heros(ISoldat.TypesH.getTypeHAlea(), i + 1, trouvePositionVide()), false);
         }
 
-        for(int i=0;i<tabHeros.length;i++){
-            tabElements[tabHeros[i].getElementPosition().getX()][tabHeros[i].getElementPosition().getY()] = tabHeros[i];
+        for(int i=0;i<ArmeeHeros.length;i++){
+            tabElements
+            [ArmeeHeros[i].getSoldat().getElementPosition().getX()]
+            [ArmeeHeros[i].getSoldat().getElementPosition().getY()] = ArmeeHeros[i].getSoldat();
 			//System.out.println(tabHeros[i].getNumeroSoldat());
 		}
     }

@@ -14,7 +14,7 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	protected int numsoldat;/*recup numéro d'un soldat*/
 	protected int portee; /*pour récupérer la portée*/
 	
-	protected static int POINTS_DE_VIE_MAX; /*pt de vie max de dépatt d"un soldat*/
+	protected int POINTS_DE_VIE_MAX; /*pt de vie max de dépatt d"un soldat*/
 	 
 	
 	
@@ -35,6 +35,7 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	public Soldat(int pointv, int porte, int puissancef, int puissancet, int numerosoldat, Position posSoldat){
 		super();
 		//super(posSoldat);
+		this.POINTS_DE_VIE_MAX=pointv;
 		this.ptvi=pointv;
 		this.portee = porte;
 		this.puissance=puissancef;
@@ -148,6 +149,12 @@ public class Soldat extends Element implements ISoldat,Serializable{
 		}
 		
 		
+	}
+	
+	public void repos(){
+		ptvi+=5;
+		if (ptvi > POINTS_DE_VIE_MAX)
+			ptvi = POINTS_DE_VIE_MAX;
 	}
 
 /*
@@ -286,9 +293,9 @@ public class Soldat extends Element implements ISoldat,Serializable{
 	public String toString(){
 		String ch = pos.toString();
 		if (this instanceof Monstre)
-			ch += getClass().getSimpleName() +" "+ numeroSoldat + " (" + ptvi +"PV/)";
+			ch += getClass().getSimpleName() +" "+ numeroSoldat + " (" + ptvi +"PV/" + POINTS_DE_VIE_MAX+")";
 		else
-			ch += getClass().getSimpleName() +" "+ (char) (numeroSoldat + 64) + " (" + ptvi +"PV/)";
+			ch += getClass().getSimpleName() +" "+ (char) (numeroSoldat + 64) + " (" + ptvi +"PV/"+ POINTS_DE_VIE_MAX+")";
 		return ch;
 	}
 
