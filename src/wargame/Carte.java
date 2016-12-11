@@ -435,7 +435,7 @@ public class Carte implements ICarte, Serializable{
             Monstre monstre= (Monstre) element;
              x= monstre.getSoldatpos().getX();
              y= monstre.getSoldatpos().getY();
-             PORTEE=1;
+             PORTEE=monstre.getPortee();
         }
         if(element instanceof Obstacle ){
             Obstacle obstacle= (Obstacle) element;
