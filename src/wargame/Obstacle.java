@@ -26,7 +26,9 @@ public class Obstacle extends Element {
 		this.TYPE=TypeObstacle.getObstacleAlea();
 		coul=TYPE.getCouleur();
 	}
-
+	public Position getObstalPosition(){
+		return this.pos;
+	}
 	/**
 	 * TO -STRING affichage
 	 * Type d'un obstale

@@ -314,11 +314,151 @@ public class Carte implements ICarte, Serializable{
 		}
 	}
 
-	/**
-	 * Getter de Matrice D'Element dimenssion 2
-	 *
-	 * @return Matrice d'element Dimenssion 2
-	 */
+    /**
+     * METHODE Champ
+     * @author AYADA Ahmad
+     *
+     * @param element
+     * @return
+     */
+    public Element[] champVision(Element element){
+        int x = -1;
+        int y = -1;
+        int PORTEE = 1;
+
+        if(element instanceof Monstre ){
+            Monstre monstre= (Monstre) element;
+             x= monstre.getSoldatpos().getX();
+             y= monstre.getSoldatpos().getY();
+             PORTEE=1;
+        }
+        if(element instanceof Obstacle ){
+            Obstacle obstacle= (Obstacle) element;
+            x= obstacle.getObstalPosition().getX();
+            y= obstacle.getObstalPosition().getY();
+            PORTEE=1;
+        }
+        if(element instanceof Heros){
+            Heros hero= (Heros)element;
+            x=hero.getSoldatpos().getX();
+            y=hero.getSoldatpos().getY();
+            PORTEE=hero.getPortee();
+        }
+
+        Element[] tabChampVision=new Element[6* PORTEE];
+        Element[] Nord=new Element[PORTEE];
+        Element[] Sud=new Element[PORTEE];
+        Element[] NordEast=new Element[PORTEE];
+        Element[] NordWest=new Element[PORTEE];
+        Element[] SudEast=new Element[PORTEE];
+        Element[] SudWest=new Element[PORTEE];
+
+        //Nord
+        for(int i = 0; i< PORTEE; i++) {
+           try {
+                Position newPos = new Position(x, y - i);
+                Nord[i] = getElement(newPos);
+            } catch (Exception e) {
+                Nord[i] = null;
+            }
+        }
+        //SUD
+        for(int i = 0; i< PORTEE; i++) {
+            try {
+                Position newPos = new Position(x, y + i);
+                Sud[i] = getElement(newPos);
+            } catch (Exception e) {
+                Sud[i] = null;
+            }
+        }
+        //NORD EAST
+        int y2=y; // on initialise y initial
+        int x2=x; // on initialise x initial
+        for(int i = 0; i< PORTEE; i++) {
+            try {
+                x2++;
+                if(x2%2==1){
+                 y2--;
+                }
+                Position newPos = new Position(x2, y2);
+                NordEast[i] = getElement(newPos);
+            } catch (Exception e) {
+                NordEast[i] = null;
+            }
+        }
+        //NORD WEAST
+        y2=y; // on initialise y initial
+        x2=x; // on initialise x initial
+        for(int i = 0; i< PORTEE; i++) {
+            try {
+                x2--;
+                if(x2%2==1){
+                    y2--;
+                }
+                Position newPos = new Position(x2, y2);
+                NordWest[i] = getElement(newPos);
+            } catch (Exception e) {
+                NordWest[i] = null;
+            }
+        }
+        //SUD WEAST
+        y2=y; // on initialise y initial
+        x2=x; // on initialise x initial
+        for(int i = 0; i< PORTEE; i++) {
+            try {
+                x2--;
+                if(x2%2==0){
+                    y2++;
+                }
+                Position newPos = new Position(x2, y2);
+                SudWest[i] = getElement(newPos);
+            } catch (Exception e) {
+                SudWest[i] = null;
+            }
+        }
+
+        //SUD EAST
+        y2=y; // on initialise y initial
+        x2=x; // on initialise x initial
+        for(int i = 0; i< PORTEE; i++) {
+            try {
+                x2++;
+                if(x2%2==0){
+                    y2++;
+                }
+                Position newPos = new Position(x2, y2);
+                SudEast[i] = getElement(newPos);
+            } catch (Exception e) {
+                SudEast[i] = null;
+            }
+        }
+        // ON RESEMBLE TOUTE LES TABLEAW(N,S,NE,NW,SE,SW)
+        // DANS UNE SEUL TABLEAU
+
+        for(int i=0 ; i< 6*PORTEE;i++) {
+            while(i<PORTEE)
+             tabChampVision[i] = Nord[i];
+            while (i>=PORTEE && i<(2*PORTEE))
+                tabChampVision[i] = Sud[i%3];
+            while (i>=(2*PORTEE) && i<(3*PORTEE))
+                tabChampVision[i] = NordEast[i%3];
+            while (i>=(3*PORTEE) && i<(4*PORTEE))
+                tabChampVision[i] = NordWest[i%3];
+            while (i>=(4*PORTEE) && i<(5*PORTEE))
+                tabChampVision[i] = SudWest[i%3];
+            while (i>=(5*PORTEE) && i<(6*PORTEE))
+                tabChampVision[i] = SudEast[i%3];
+        }
+        return tabChampVision;
+	}
+
+
+
+        /**
+         * Getter de Matrice D'Element dimenssion 2
+         *
+         * @return Matrice d'element Dimenssion 2
+         */
 	public Element[][] getTabElements() {
 		return tabElements;
 	}
